@@ -205,3 +205,16 @@ html, body{
     color: rgb(136, 136, 136);
     display: block;
 }
+
+#GUIEditor_Button{
+    font-size: 15px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: white;
+}
+
+#GUIEditor_stat{
+    color: white;
+    font-size: 15px;
+}

@@ -95,4 +95,4 @@ let resizeObserver = new ResizeObserver(() => {
 });
   
 resizeObserver.observe(elem);
-resizeObserver.observe($("#previewContainer")[0])
+resizeObserver.observe($("#previewContainer")[0]);

@@ -26,9 +26,9 @@
 <body onload="init();" onresize="init();">
     <div id="main_container">
         <div id="top_header">
-            &nbsp;&nbsp;
-            <img src="assets/logo/logo2.png" alt="glitcherSDA"
-                style="height: 100%; cursor: pointer;"
+            &nbsp;
+            <img src="assets/logo/scribble.png" alt="scribbleX"
+                style="height: 100%; width: 185px; cursor: pointer;"
             >
         </div>
         <div id="appContainer">
@@ -43,7 +43,10 @@
                     <div class="splitView_Tools">
                         <div id="toolsPanel">
                             <div id="toolsPanel_header"></div>
-                            <div id="toolsPanel_container"></div>
+                            <div id="toolsPanel_container">
+                                <button id="GUIEditor_Button" onclick="activateGUIEditor();">GUI Editor</button>
+                                <span id="GUIEditor_stat">OFF</span>
+                            </div>
                             <div id="toolsPanel_footer"></div>
                         </div>
                         <div id="previewContainer">
@@ -62,7 +65,11 @@
                                 <br>
                                 <br>
                                 <center>
-                                    glitcher.SDA Preview Frame
+                                    <img src="assets/logo/scribble.png" alt="" style="height: 80; width: 250px;">
+                                    <br>
+                                    <span>
+                                        Preview Frame
+                                    </span>
                                 </center>
                             </span>
                             <iframe frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0" style="display: none;" id="previewFrame" class="previewFrame"></iframe>
