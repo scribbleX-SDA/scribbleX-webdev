@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>
+        glitcher.SDA
+    </title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/scrollbar.css">
+
+    
+    <script src="js/libraries/jQuery.js"></script>
+    <script src="js/libraries/split.js"></script>
+    <script src="js/ace-builds-master/src/ace.js"></script>
+    <script src="js/ace-builds-master/src/ext-language_tools.js"></script>
+
+    <script src="js/ace-builds-master/src/mode-javascript.js"></script>
+    
+    
+    <script src="js/src/init.js"></script>
+</head>
+<body onload="init();" onresize="init();">
+    <div id="main_container">
+        <div id="top_header">
+            &nbsp;&nbsp;
+            <img src="assets/logo/logo2.png" alt="glitcherSDA"
+                style="height: 100%; cursor: pointer;"
+            >
+        </div>
+        <div id="appContainer">
+            <div id="leftContainer"></div>
+
+            <div id="centerContainer"></div>
+
+            <div id="center_right_appContainer_gutter"></div>
+
+            <div id="rightContainer">
+                <div id="top_appContainer">
+                    <div class="splitView_Tools">
+                        <div id="toolsPanel">
+                            <div id="toolsPanel_header"></div>
+                            <div id="toolsPanel_container"></div>
+                            <div id="toolsPanel_footer"></div>
+                        </div>
+                        <div id="previewContainer">
+                            <div id="searchBarBrowser">
+                                &nbsp;&nbsp;
+                                <img src="assets/icons/1647373505088.png" alt=""
+                                    style="height: 100%;
+                                            display: inline-block;
+                                            cursor: pointer;"
+                                title="Reload Page" onclick="run();">
+                            </div>
+                            <span id="previewContainer_text">
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <center>
+                                    glitcher.SDA Preview Frame
+                                </center>
+                            </span>
+                            <iframe frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0" style="display: none;" id="previewFrame" class="previewFrame"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="appContainer_innerMargin"></div>
+
+                <div id="bottom_appContainer" onresize="resizeAppFrames();">
+                    <div class="splitView_Editors">
+                        <div id="htmlContainer" class="splitEditor">
+                            <div id="htmlHeader" class="editor_header">
+                                <span style="color: red; font-size: 18px;">
+                                    &nbsp;&nbsp;html.
+                                </span>
+                            </div>
+                            <div id="htmlEditorContainer" class="editorContainer">
+                                <div id="htmlEditorChild" class="EditorChild"></div>
+                            </div>
+                        </div>
+                        <div id="cssContainer" class="splitEditor">
+                            <div id="cssHeader" class="editor_header">
+                                <span style="color: blue; font-size: 18px;">
+                                    &nbsp;&nbsp;css.
+                                </span>
+                            </div>
+                            <div id="cssEditorContainer" class="editorContainer">
+                                <div id="cssEditorChild" class="EditorChild"></div>
+                            </div>
+                        </div>
+                        <div id="jsContainer" class="splitEditor">
+                            <div id="jsHeader" class="editor_header">
+                                <span style="color: yellow; font-size: 18px;">
+                                    &nbsp;&nbsp;js.
+                                </span>
+                            </div>
+                            <div id="jsEditorContainer" class="editorContainer jsEditorContainer">
+                                <div id="jsEditorChild" class="EditorChild"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="bottom_footer"></div>
+    </div>
+
+    <script src="js/src/script.js"></script>
+    <script src="js/src/renderContent.js"></script>
+</body>
+</html>
