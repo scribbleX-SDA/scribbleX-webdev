@@ -1,2 +1,2 @@
 # scribbleX-webdev
- n.a.
+ An open-source live editor tool.
