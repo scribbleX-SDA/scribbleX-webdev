@@ -22,6 +22,7 @@
     
     
     <script src="js/src/init.js"></script>
+    <!--<script src="js/src/builder_gui.js"></script>-->
 </head>
 <body onload="init();" onresize="init();">
     <div id="main_container">
@@ -43,9 +44,30 @@
                     <div class="splitView_Tools">
                         <div id="toolsPanel">
                             <div id="toolsPanel_header"></div>
-                            <div id="toolsPanel_container">
-                                <button id="GUIEditor_Button" onclick="activateGUIEditor();">GUI Editor</button>
+                            <div id="toolsPanel_container" style="color: white;">
+                                <br>
+                                <button id="GUIEditor_Button">GUI Editor</button>
+                                <!-- onclick="activateGUIEditor();" -->
                                 <span id="GUIEditor_stat">OFF</span>
+                                <!--
+                                <script>
+                                    document.getElementById("GUIEditor_Button").addEventListener('click', ()=>{
+                                        activateGUIEditor();
+                                    });
+                                </script>
+                                -->
+                                <br>
+                                <br>
+                                <label for="elemHeihgt">Height</label>
+                                <input type="number" name="" id="elemHeight" step="0.01" value="">
+                                <br>
+                                <label for="elemWidth">Width</label>
+                                <input type="number" id="elemWidth" step="0.01" value="">
+                                <br>
+                                <br>
+                                <span>Background Color: </span><input type="color" name="" id="elemBGC" value="">
+                                <br>
+                                <span>Font Color: </span><input type="color" name="" id="elemFC" value="">
                             </div>
                             <div id="toolsPanel_footer"></div>
                         </div>
@@ -73,6 +95,49 @@
                                 </center>
                             </span>
                             <iframe frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0" style="display: none;" id="previewFrame" class="previewFrame"></iframe>
+                            <script>
+                                setInterval(run_gui, 75);
+
+                                var temp_storage = null;
+
+                                function run_gui(){
+                                    console.log("Running...")
+                                    document.getElementById("previewFrame").contentWindow.document.addEventListener('mouseover', (event)=>{
+                                        event.target.style.outline = "thin solid #0000FF";
+                                    });
+                                    document.getElementById("previewFrame").contentWindow.document.addEventListener('mouseout', (event)=>{
+                                        event.target.style.outline = "thin none #0000FF";
+                                    });
+
+                                    document.getElementById("previewFrame").contentWindow.document.addEventListener('click', (event)=>{
+                                        console.log(window.getComputedStyle(event.target).backgroundColor);
+                                        var abc = window.getComputedStyle(event.target).backgroundColor;
+                                        abc = abc.replace("rgb(", "");
+                                        abc = abc.replace(")", "");
+                                        var abc_array = abc.split(', ');
+                                        //alert(abc_array[0]);
+                                        //alert(abc_array[1]);
+                                        //alert(abc_array[2]);
+
+                                        console.log("RGB: " + rgbToHex(parseInt(abc_array[0]), parseInt(abc_array[1]), parseInt(abc_array[2])));
+                                        document.getElementById("elemBGC").value = rgbToHex(parseInt(abc_array[0]), parseInt(abc_array[1]), parseInt(abc_array[2]));
+
+                                        temp_storage = event.target;
+                                    });
+
+                                    var getChangeBGC = document.getElementById("elemBGC").value;
+                                    temp_storage.style.backgroundColor = getChangeBGC;
+                                }
+
+                                function componentToHex(c) {
+                                    var hex = c.toString(16);
+                                    return hex.length == 1 ? "0" + hex : hex;
+                                }
+
+                                function rgbToHex(r, g, b) {
+                                    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+                                }
+                            </script>
                         </div>
                     </div>
                 </div>
