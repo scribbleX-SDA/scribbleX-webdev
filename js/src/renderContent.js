@@ -9,8 +9,8 @@ function run(){
 
     var html_content_rendered = html_content;
 
-    html_content_rendered = html_content_rendered.replaceAll("\n", "");
-    html_content_rendered = html_content_rendered.replaceAll("\t", "");
+    //html_content_rendered = html_content_rendered.replaceAll("\n", "");
+    //html_content_rendered = html_content_rendered.replaceAll("\t", "");
     html_content_rendered = html_content_rendered.replace('<link rel="stylesheet" href="css/style.css">', '<style>'+css_content+'</style>');
     html_content_rendered = html_content_rendered.replace('<script src="js/script.js"></script>', '<script type="text/javascript">'+js_content+'</script>');
 
