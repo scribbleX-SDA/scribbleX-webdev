@@ -20,5 +20,5 @@ function run(){
 
     previewFrame_contentManager.open();
     previewFrame_contentManager.write(html_content_rendered);
-    previewFrame_contentManager
+    previewFrame_contentManager;
 }

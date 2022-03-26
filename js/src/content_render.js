@@ -1,23 +1,69 @@
-function compile(){
-    var htmlCode = htmlEditor.getValue();
-    var cssCode = cssEditor.getValue();
-    var jsCode = jsEditor.getValue();
+/*
+function run(){
+
+    var previewFrame = document.getElementById("previewFrame");
+    var previewFrame_contentManager = previewFrame.contentDocument || previewFrame.contentWindow.document;
+
+    var html_content = htmlEditor.getValue();
+    var css_content = cssEditor.getValue();
+    var js_content = jsEditor.getValue();
+
+    var html_content_rendered = html_content;
+
+    //html_content_rendered = html_content_rendered.replaceAll("\n", "");
+    //html_content_rendered = html_content_rendered.replaceAll("\t", "");
+    html_content_rendered = html_content_rendered.replace('<link rel="stylesheet" href="css/style.css">', '<style>'+css_content+'</style>');
+    html_content_rendered = html_content_rendered.replace('<script src="js/script.js"></script>', '<script type="text/javascript">'+js_content+'</script>');
+
+
+    document.getElementById("previewFrame").style.display = "block";
+    document.getElementById("previewContainer_text").style.display = "none";
+
+    previewFrame_contentManager.open();
+    previewFrame_contentManager.write(html_content_rendered);
+    previewFrame_contentManager;
+}
+*/
+
+
+
+function format(element, property, value){
+    var element_tag = null;// tag of the element
+    var element_id = null;// ID of the element
+    var element_class = null;// Class of the element
+
+    if(element_id = null){
+        if(element_class = null){
+            // Inform the user that the element doesn't have a dedicated ID
+            // nor does it have a dedicated Class
+            // if they want to change the attibute value only for the particular
+            // element then...
+            // Ask them to provide a class or an id to the element
+            // else continue changing the value using the tag.
+
+
+            /*
+                DO THE MAGIC NOW...
+            */
+        }
+        // Check if the class contains multiple elements under it...
+        // "HOW TO CHECK THE NUMBER OF ELEMENTS UNDER THE DEDICATED CLASS?"
+        // count the number of occurances in the htmlSnippet of the class_name
+        // if more than one.... repeat the procedure if there were no class and id
+        // else... continue making the changes within the css code.
+
+
+        /*
+            DO THE MAGIC NOW...
+        */
+    }
+    // Check if the ID contains multiple elements under it...
+    // if more than one occurances of the same ID... repeat the
+    // procedure if there were no class and id
+    // else... continue making the changes within the css code.
+
 
     /*
-        Alright... what I need to do here is...
-        I need to create an algorithm that will save
-        all the tags of the element in a particular format with
-        their respective attributes and content.
+        DO THE MAGIC NOW...
     */
-
-    var htmlCode_temp = htmlCode;
-
-    var tags_1 = ['area', 'base', 'br', 'col', 'command', 'embed',
-                  'hr', 'img', 'input', 'keygen', 'link', 'meta',
-                  'param', 'source', 'track', 'wbr'];
-
-    var random_declaration = "!doctype a abbr acronym address applet article aside audio b basefont bdi bdo big blockquote body button canvas caption center cite code colgroup data datalist dd del details dfn dialog dir div dl dt em fieldset figcaption figure font footer form frame frameset h1 h2 h3 h4 h5 h6 head header html i iframe ins kbd label legend li main map mark meter nav noframes noscript object ol optgroup option output p picture pre progress q rp rt ruby s samp script section select small span strike strong style sub summary sup svg table tbody td template textarea tfoot th thead time tr tt u ul var video";
-    var tags_2 = random_declaration.split(' ');
-
-    
 }
