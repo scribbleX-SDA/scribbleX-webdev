@@ -78,7 +78,7 @@
                                     style="height: 100%;
                                             display: inline-block;
                                             cursor: pointer;"
-                                title="Reload Page" onclick="run();">
+                                title="Reload Page" onclick="inspector();">
                             </div>
                             <span id="previewContainer_text">
                                 <br>
@@ -94,8 +94,8 @@
                                     </span>
                                 </center>
                             </span>
-                            <iframe frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0" style="display: none;" id="previewFrame" class="previewFrame"></iframe>
-                            <script>
+                            <iframe frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0" style="display: none; background-color: white;" id="previewFrame" class="previewFrame"></iframe>
+                            <script>/*
                                 setInterval(run_gui, 75);
 
                                 var temp_storage = null;
@@ -136,13 +136,15 @@
 
                                 function rgbToHex(r, g, b) {
                                     return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-                                }
+                                }*/
                             </script>
                         </div>
                     </div>
                 </div>
 
-                <div id="appContainer_innerMargin"></div>
+                <!--
+                    <div id="appContainer_innerMargin"></div>
+                -->
 
                 <div id="bottom_appContainer" onresize="resizeAppFrames();">
                     <div class="splitView_Editors">
@@ -184,9 +186,8 @@
     </div>
 
     <script src="js/src/script.js"></script>
-    <script src="js/src/content_render.js"></script>
-    <script src="js/src/renderContent.js"></script>
-
+    <script src="js/src/inspector.js"></script>
+    <!--<script src="js/src/renderContent.js"></script>-->
     <script>
         
     </script>

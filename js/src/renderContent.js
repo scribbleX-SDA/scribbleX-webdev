@@ -1,4 +1,4 @@
-function run(){
+function inspector(){
 
     var previewFrame = document.getElementById("previewFrame");
     var previewFrame_contentManager = previewFrame.contentDocument || previewFrame.contentWindow.document;

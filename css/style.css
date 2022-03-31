@@ -22,7 +22,7 @@ html, body{
     height: 50px;
     width: 100%;
     display: block;
-    background-color: #001733;
+    background-color: #07090E;
 }
 
 #bottom_footer{
@@ -31,7 +31,7 @@ html, body{
     width: 100%;
     position: fixed;
     bottom: 0;
-    background-color: #001126;
+    background-color: #07090E;
 }
 
 #appContainer{
@@ -44,7 +44,7 @@ html, body{
     width: 50px;
     display: inline-block;
     float: left;
-    background-color: #001733;
+    background-color: #07090E;
 }
 
 #centerContainer{
@@ -52,7 +52,7 @@ html, body{
     width: 200px;
     display: inline-block;
     float: left;
-    background-color: #001c40;
+    background-color: #0b0e14;
 }
 
 #rightContainer{
@@ -91,9 +91,11 @@ html, body{
 }
 
 .gutter{
-    background-color: #01172e;
+    background-color: black;
     background-repeat: no-repeat;
     background-position: 50%;
+
+    position: relative;
 
     -webkit-transition: background-color 150ms linear;
     -moz-transition: background-color 150ms linear;
@@ -135,40 +137,40 @@ html, body{
 
 
 #toolsPanel{
-    background-color: #002451;
+    background-color: #0D1018;
     min-width: 1px;
 }
 
 #previewContainer{
-    background-color: #001126;
+    background-color: #0F111A;
 }
 
 #appContainer_innerMargin{
     height: 1px;
     width: 100%;
     display: block;
-    background-color: #01172e;
+    background-color: black;
 }
 
 #center_right_appContainer_gutter{
     width: 1px;
     display: inline-block;
     height: 100%;
-    background-color: #01172e;
+    background-color: black;
 }
 
 #searchBarBrowser{
     height: 30px;
     width: 100%;
     display: block;
-    background-color: #002047;
+    background-color: #0B0C13;
 }
 
 .editor_header{
     height: 25px;
     width: 100%;
     display: block;
-    background-color: #011b36;
+    background-color: #0B0C13;
 }
 
 #editorContainer{
@@ -192,7 +194,7 @@ html, body{
     height: 30px;
     width: 100%;
     display: block;
-    background-color: #001a3a;
+    background-color: #0B0C13;
 }
 
 #previewFrame{
@@ -217,4 +219,9 @@ html, body{
 #GUIEditor_stat{
     color: white;
     font-size: 15px;
+}
+
+
+.ace_gutter-cell{
+    color: #252836;
 }

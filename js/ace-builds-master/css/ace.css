@@ -495,7 +495,8 @@ width: 1px;
 background: #e8e8e8;
 }
 .ace-tm .ace_fold {
-background-color: #6B72E6;
+/*background-color: #6B72E6;*/
+content: '<- ... ->';
 }
 .ace-tm {
 background-color: #FFFFFF;

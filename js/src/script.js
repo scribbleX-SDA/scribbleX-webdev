@@ -1,15 +1,15 @@
 Split(['#htmlContainer', '#cssContainer', '#jsContainer'],{
-    gutterSize: 2
+    gutterSize: 3
 });
 
 Split(['#toolsPanel', '#previewContainer'],{
     sizes: [45, 55],
-    gutterSize: 2
+    gutterSize: 3
 });
 
 Split(['#top_appContainer', '#bottom_appContainer'], {
     direction: 'vertical',
-    gutterSize: 2,
+    gutterSize: 3,
 })
 
 
@@ -17,7 +17,7 @@ Split(['#top_appContainer', '#bottom_appContainer'], {
 
 
 var jsEditor = ace.edit("jsEditorChild");
-jsEditor.setTheme("ace/theme/tomorrow_night_blue");
+jsEditor.setTheme("ace/theme/tomorrow_night_horizon");
 jsEditor.session.setMode("ace/mode/javascript");
 jsEditor.setFontSize(15);
 jsEditor.setOptions({
@@ -29,7 +29,7 @@ jsEditor.setOptions({
 
 
 var cssEditor = ace.edit("cssEditorChild");
-cssEditor.setTheme("ace/theme/tomorrow_night_blue");
+cssEditor.setTheme("ace/theme/tomorrow_night_horizon");
 cssEditor.session.setMode("ace/mode/css");
 cssEditor.setFontSize(15);
 cssEditor.setOptions({
@@ -41,7 +41,7 @@ cssEditor.setOptions({
 
 
 var htmlEditor = ace.edit("htmlEditorChild");
-htmlEditor.setTheme("ace/theme/tomorrow_night_blue");
+htmlEditor.setTheme("ace/theme/tomorrow_night_horizon");
 htmlEditor.session.setMode("ace/mode/html");
 htmlEditor.setFontSize(15);
 htmlEditor.setOptions({
