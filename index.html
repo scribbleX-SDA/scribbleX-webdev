@@ -25,6 +25,13 @@
     <!--<script src="js/src/builder_gui.js"></script>-->
 </head>
 <body onload="init();" onresize="init();">
+    <script>
+        document.onkeydown = function(e) {
+            if(e.ctrlKey && e.shiftKey && e.which == 82){
+                inspector();
+            }
+        };
+    </script>
     <div id="main_container">
         <div id="top_header">
             &nbsp;
@@ -65,7 +72,7 @@
                                 <input type="number" id="elemWidth" step="0.01" value="">
                                 <br>
                                 <br>
-                                <span>Background Color: </span><input type="color" name="" id="elemBGC" value="" onchange="bgcolor(this.value);">
+                                <span>Background Color: </span><input type="color" name="" id="elemBGC" value="" onchange="bgcolor(this.value);" oninput="bgcolor(this.value);">
                                 <br>
                                 <span>Font Color: </span><input type="color" name="" id="elemFC" value="" onchange="fontColor(this.value);" oninput="fontColor(this.value);">
                             </div>

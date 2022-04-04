@@ -5,6 +5,7 @@ var bg_opacity = null;
 
 
 var array_of_ids;
+var elem_oc_doc = '';
 
 
 // idoc_element properties //
@@ -16,6 +17,10 @@ var idocEl_outline = '';
 
 var eloc = '';
 var eloc_id = '';
+var eloc_tagName = '';
+var eloc_content = '';
+var eloc_style = '';
+var eloc_class;
 
 //===========================
 
@@ -151,12 +156,232 @@ document.addEventListener("keydown", (x)=>{
 function fontColor(eVal){
     if(eloc != null){
         eloc.style.color = eVal;
+        //console.log(eloc);
         //alert(eloc_id);
+        reconstructColor(eVal);
     }
 }
 
 function bgcolor(eVal){
     if(eloc != null){
         eloc.style.backgroundColor = eVal;
+        reconstructBgColor(eVal);
+    }
+}
+
+function reconstructColor(scribble_val){
+    var elem_idoc = eloc;
+
+    var tagName = elem_idoc.tagName;
+    var id = elem_idoc.id;
+    var class_grab = elem_idoc.classList;
+    var classArray = 0;
+
+    //--------------------------------------------
+
+    /*
+    if(id == ''){
+        alert("ID: null");
+    }
+    else{
+        alert("ID: " + id);
+    }
+    if(class_grab == ''){
+        alert("Classes: null");
+    }
+    else{
+        alert("Classes: " + class_grab);
+    }
+    alert("TagName: " + tagName);
+    */
+
+    var number_of_classes_used = null;
+
+
+    var css = cssEditor.getValue();
+
+    if(id == null || id == ''){
+        //alert("ID NOT DECLARED");
+    }
+    else{
+        //alert("ID DECLARED -> "+id);
+        if(css.includes(id)){
+            /*var temp1 = null;
+            var temp2 = null;
+            var scr = 0;
+            var parent = null;
+            var elements_in_DOM = document.getElementsByClassName("ace_type");
+            //console.log(elements_in_DOM);
+            for(var k=0; k<elements_in_DOM.length; k++){
+                if(elements_in_DOM[k].innerHTML == "color"){
+                    //temp1[scr] = String(elements_in_DOM[k]);
+                    //scr++;
+                    parent = elements_in_DOM[k].parentElement;
+                    temp1 = parent.querySelector(".ace_constant");
+                    temp1.innerHTML = scribble_val;
+                    //console.log(temp1);
+                }
+            }*/
+
+            content = css.substring(css.indexOf('#'+id));
+            content = content.substring(0, content.indexOf('}')+1);
+            console.log(content);
+            content = String(content);
+
+            var x123 = null;
+
+            //console.log(content);
+            var temp23 = content;
+            temp23 = temp23.replace("#"+id+"{", '');
+            temp23 = temp23.replace("{", "");
+            for(var k=0; k<temp23.length; k++){
+                if(temp23[k] == 'c' && temp23[k+1] == 'o' && temp23[k+2] == 'l' && temp23[k-1] != '-'){
+                    //alert("FOUND IT");
+                    x123 = k;
+                    break;
+                }
+            }
+            temp23 = temp23.substring(x123);
+            var spl_temp = temp23.split(";");
+            temp23 = spl_temp[0];
+            //alert(temp23);
+            var x44 = content.replace(temp23, "color: "+scribble_val);
+
+            css = css.replace(content, x44);
+            cssEditor.setValue(css);
+        }
+    }
+
+    if(class_grab == null || class_grab == ''){
+        //alert("CLASS(ES) NOT DECLARED");
+    }
+    else{
+        //alert("CLASSES DECLARED -> "+class_grab);
+        class_grab = String(class_grab);
+        classArray = class_grab.split(" ");
+        for(var i=0; i<classArray.length(); i++){
+            if(css.includes(classArray[i])){
+                //number_of_classes_used += 1;
+                //alert("CSS GOT CLASS: "+classArray[i]);
+            }
+        }
+    }
+
+    if(css.includes(tagName)){
+        //alert("CSS GOT TAGNAME: "+tagName);
+    }
+    else{
+        //alert("CSS DOESN'T USE TAGNAME");
+    }
+}
+
+
+
+
+
+
+function reconstructBgColor(scribble_val){
+    var elem_idoc = eloc;
+
+    var tagName = elem_idoc.tagName;
+    var id = elem_idoc.id;
+    var class_grab = elem_idoc.classList;
+    var classArray = 0;
+
+    //--------------------------------------------
+
+    /*
+    if(id == ''){
+        alert("ID: null");
+    }
+    else{
+        alert("ID: " + id);
+    }
+    if(class_grab == ''){
+        alert("Classes: null");
+    }
+    else{
+        alert("Classes: " + class_grab);
+    }
+    alert("TagName: " + tagName);
+    */
+
+    var number_of_classes_used = null;
+
+
+    var css = cssEditor.getValue();
+
+    if(id == null || id == ''){
+        //alert("ID NOT DECLARED");
+    }
+    else{
+        //alert("ID DECLARED -> "+id);
+        if(css.includes(id)){
+            /*var temp1 = null;
+            var temp2 = null;
+            var scr = 0;
+            var parent = null;
+            var elements_in_DOM = document.getElementsByClassName("ace_type");
+            //console.log(elements_in_DOM);
+            for(var k=0; k<elements_in_DOM.length; k++){
+                if(elements_in_DOM[k].innerHTML == "color"){
+                    //temp1[scr] = String(elements_in_DOM[k]);
+                    //scr++;
+                    parent = elements_in_DOM[k].parentElement;
+                    temp1 = parent.querySelector(".ace_constant");
+                    temp1.innerHTML = scribble_val;
+                    //console.log(temp1);
+                }
+            }*/
+
+            content = css.substring(css.indexOf('#'+id));
+            content = content.substring(0, content.indexOf('}')+1);
+            console.log(content);
+            content = String(content);
+
+            var x123 = null;
+
+            //console.log(content);
+            var temp23 = content;
+            temp23 = temp23.replace("#"+id+"{", '');
+            temp23 = temp23.replace("{", "");
+            for(var k=0; k<temp23.length; k++){
+                if(temp23[k] == 'b' && temp23[k+3] == 'k' && temp23[k+9] == 'd' && temp23[k+15] == 'r'){
+                    //alert("FOUND IT");
+                    x123 = k;
+                    break;
+                }
+            }
+            temp23 = temp23.substring(x123);
+            var spl_temp = temp23.split(";");
+            temp23 = spl_temp[0];
+            //alert(temp23);
+            var x44 = content.replace(temp23, "background-color: "+scribble_val);
+
+            css = css.replace(content, x44);
+            cssEditor.setValue(css);
+        }
+    }
+
+    if(class_grab == null || class_grab == ''){
+        //alert("CLASS(ES) NOT DECLARED");
+    }
+    else{
+        //alert("CLASSES DECLARED -> "+class_grab);
+        class_grab = String(class_grab);
+        classArray = class_grab.split(" ");
+        for(var i=0; i<classArray.length(); i++){
+            if(css.includes(classArray[i])){
+                //number_of_classes_used += 1;
+                //alert("CSS GOT CLASS: "+classArray[i]);
+            }
+        }
+    }
+
+    if(css.includes(tagName)){
+        //alert("CSS GOT TAGNAME: "+tagName);
+    }
+    else{
+        //alert("CSS DOESN'T USE TAGNAME");
     }
 }
