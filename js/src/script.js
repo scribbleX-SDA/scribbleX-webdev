@@ -96,3 +96,29 @@ let resizeObserver = new ResizeObserver(() => {
   
 resizeObserver.observe(elem);
 resizeObserver.observe($("#previewContainer")[0]);
+
+
+function savecode(){
+    var htmlSnippet = htmlEditor.getValue();
+    htmlSnippet = encodeURIComponent(htmlSnippet);
+    var cssSnippet = cssEditor.getValue();
+    cssSnippet = encodeURIComponent(cssSnippet);
+    var jsSnippet = jsEditor.getValue();
+    jsSnippet = encodeURIComponent(jsSnippet);
+
+    var name = document.getElementById("name").value;
+
+    var response = null;
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            response = this.responseText;
+            if(response == "complete"){
+                alert("Saved");
+            }
+        }
+    };
+    xmlhttp.open("GET", "source_code_management.php?html="+htmlSnippet+"&css="+cssSnippet+"&js="+jsSnippet+"&name="+name);
+    xmlhttp.send();
+}

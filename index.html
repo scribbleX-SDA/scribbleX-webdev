@@ -12,9 +12,12 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/scrollbar.css">
 
+    <link rel="icon" type="image/x-icon" href="assets/fav/kt23.ico">
+
     
     <script src="js/libraries/jQuery.js"></script>
     <script src="js/libraries/split.js"></script>
+    <script src="js/libraries/sweetalert.js"></script>
     <script src="js/ace-builds-master/src/ace.js"></script>
     <script src="js/ace-builds-master/src/ext-language_tools.js"></script>
 
@@ -42,7 +45,29 @@
         <div id="appContainer">
             <div id="leftContainer"></div>
 
-            <div id="centerContainer"></div>
+            <div id="centerContainer">
+                <br>
+                <br>
+                <div id="save_container">
+                    <center>
+                        <button id="save_btn" onclick="savecode();">
+                            Save
+                        </button>
+                    </center>
+                </div>
+                <div style="height: 50px; width: 100%; display: block;">
+                    <!--
+                        EMPTY SPACE
+                    -->
+                </div>
+                <div id="meta_container">
+                    <input type="text"
+                        placeholder="Project Name: "
+                        style="display: block;"
+                        id="name"
+                    >
+                </div>
+            </div>
 
             <div id="center_right_appContainer_gutter"></div>
 

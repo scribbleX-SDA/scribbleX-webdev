@@ -115,7 +115,7 @@ html, body{
     -ms-transition: background-color 150ms linear;
     transition: background-color 150ms linear;
     
-    transition-delay: 1000ms;
+    transition-delay: 250ms;
 }
 
 .gutter.gutter-horizontal{
@@ -224,6 +224,16 @@ html, body{
 
 .ace_gutter-cell{
     color: #252836;
+}
+
+#save_container{
+    width: 100%;
+    height: 30px;
+}
+
+#save_btn{
+    height: 100%;
+    width: 55px;
 }
 
 
