@@ -61,32 +61,6 @@ document.getElementById("top_appContainer").addEventListener('resize', function(
     cssEditor.resize();
 });
 
-/*
-
-document.getElementById("bottom_appContainer").addEventListener('resize', function(){
-    $("#htmlEditorContainer").height($("#htmlContainer").height() - $("#htmlHeader").height());
-    $("#cssEditorContainer").height($("#cssContainer").height() - $("#cssHeader").height());
-    $("#jsEditorContainer").height($("#jsContainer").height() - $("#jsHeader").height());
-
-    jsEditor.resize();
-    htmlEditor.resize();
-    cssEditor.resize();
-});
-
-
-
-function resizeAppFrames(){
-    $("#htmlEditorContainer").height($("#htmlContainer").height() - $("#htmlHeader").height());
-    $("#cssEditorContainer").height($("#cssContainer").height() - $("#cssHeader").height());
-    $("#jsEditorContainer").height($("#jsContainer").height() - $("#jsHeader").height());
-
-    jsEditor.resize();
-    htmlEditor.resize();
-    cssEditor.resize();
-
-    console.log("Hello World");
-}
-*/
 
 var elem = $("#bottom_appContainer")[0];
 
@@ -125,5 +99,5 @@ function savecode(){
     };
     xmlhttp.open("GET", "source_code_management.php?html="+htmlSnippet+"&css="+cssSnippet+"&js="+jsSnippet+"&name="+name);
     xmlhttp.send();
-    console.log("source_code_management.php?html="+htmlSnippet+"&css="+cssSnippet+"&js="+jsSnippet+"&name="+name+"&sec=public");
+    //console.log("source_code_management.php?html="+htmlSnippet+"&css="+cssSnippet+"&js="+jsSnippet+"&name="+name+"&sec=public");
 }

@@ -44,7 +44,7 @@ html, body{
     width: 50px;
     display: inline-block;
     float: left;
-    background-color: #07090E;
+    background-color: #050a13;
 }
 
 #centerContainer{
@@ -52,7 +52,7 @@ html, body{
     width: 200px;
     display: inline-block;
     float: left;
-    background-color: #0b0e14;
+    background-color: #0b0e15;
 }
 
 #rightContainer{

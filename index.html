@@ -122,7 +122,7 @@
                     <input type="text"
                         placeholder="Project Name: "
                         style="display: block;"
-                        id="name"
+                        id="name" autocomplete="off"
                     >
                 </div>
             </div>
@@ -133,8 +133,13 @@
                 <div id="top_appContainer">
                     <div class="splitView_Tools">
                         <div id="toolsPanel">
-                            <div id="toolsPanel_header"></div>
+                            <div id="toolsPanel_header">
+                                <span style="color: white; font-size: 20px;">
+                                    Tools
+                                </span>
+                            </div>
                             <div id="toolsPanel_container" style="color: white;">
+                                <div style="display: inline-block; height: 100%; width: 2%;"></div>
                                 <!--<button id="GUIEditor_Button">GUI Editor</button>-->
                                 <!-- onclick="activateGUIEditor();" -->
                                 <!--<span id="GUIEditor_stat">OFF</span>-->
@@ -145,21 +150,23 @@
                                     });
                                 </script>
                                 -->
-                                <br>
-                                <label for="elemHeihgt" style="font-size: 15px;">Height:</label>
-                                <input type="number" name="" id="elemHeight" step="0.01" value="" class="elemDim">
-                                <br>
-                                <br>
-                                <label for="elemWidth" style="font-size: 15px;">Width:</label>
-                                <input type="number" id="elemWidth" step="0.01" value="" class="elemDim">
-                                <br>
-                                <br>
-                                <br>
-                                <span style="font-size: 15px;">Background Color: </span><input type="color" name="" id="elemBGC" value="" onchange="bgcolor(this.value);" oninput="bgcolor(this.value);">
-                                <br>
-                                <br>
-                                <br>
-                                <span style="font-size: 15px;">Font Color: </span><input type="color" name="" id="elemFC" value="" onchange="fontColor(this.value);" oninput="fontColor(this.value);">
+                                <div style="display: inline-block; height: 100%; width: 96%;">
+                                    <br>
+                                    <label for="elemHeihgt" style="font-size: 15px;">Height:</label>
+                                    <input type="number" name="" id="elemHeight" step="0.01" value="" class="elemDim">
+                                    <br>
+                                    <br>
+                                    <label for="elemWidth" style="font-size: 15px;">Width:</label>
+                                    <input type="number" id="elemWidth" step="0.01" value="" class="elemDim">
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <span style="font-size: 15px;">Background Color: </span><input type="color" name="" id="elemBGC" value="" onchange="bgcolor(this.value);" oninput="bgcolor(this.value);">
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <span style="font-size: 15px;">Font Color: </span><input type="color" name="" id="elemFC" value="" onchange="fontColor(this.value);" oninput="fontColor(this.value);">
+                                </div>
                             </div>
                             <div id="toolsPanel_footer"></div>
                         </div>
@@ -245,6 +252,10 @@
                                 <span style="color: red; font-size: 18px;">
                                     &nbsp;&nbsp;html.
                                 </span>
+                                <span style="float: right;">
+                                    &nbsp;&nbsp;
+                                </span>
+                                <span title="New HTML"><img src="assets/icons/plus.png" alt="" style="float: right; height: 75%; cursor: pointer;"></span>
                             </div>
                             <div id="htmlEditorContainer" class="editorContainer">
                                 <div id="htmlEditorChild" class="EditorChild"></div>
@@ -255,6 +266,10 @@
                                 <span style="color: blue; font-size: 18px;">
                                     &nbsp;&nbsp;css.
                                 </span>
+                                <span style="float: right;">
+                                    &nbsp;&nbsp;
+                                </span>
+                                <span title="New CSS"><img src="assets/icons/plus.png" alt="" style="float: right; height: 75%; cursor: pointer;"></span>
                             </div>
                             <div id="cssEditorContainer" class="editorContainer">
                                 <div id="cssEditorChild" class="EditorChild"></div>
@@ -265,6 +280,10 @@
                                 <span style="color: yellow; font-size: 18px;">
                                     &nbsp;&nbsp;js.
                                 </span>
+                                <span style="float: right;">
+                                    &nbsp;&nbsp;
+                                </span>
+                                <span title="New JS"><img src="assets/icons/plus.png" alt="" style="float: right; height: 75%; cursor: pointer;"></span>
                             </div>
                             <div id="jsEditorContainer" class="editorContainer jsEditorContainer">
                                 <div id="jsEditorChild" class="EditorChild"></div>

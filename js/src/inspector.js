@@ -63,7 +63,7 @@ function inspector(){
 
     document.addEventListener("mouseover", (ev)=>{
         doc_element = ev.target.tagName;
-        console.log("DOC_ELEMENT: " + doc_element);
+        //console.log("DOC_ELEMENT: " + doc_element);
     });
 
     idocument.addEventListener("mouseover", (event)=>{
@@ -82,29 +82,6 @@ function inspector(){
         doc_element = '';
     });
 }
-
-/*
-function customizeTools(elem){
-    //var color = window.getComputedStyle(elem).getPropertyValue("color");
-    //var background_color = window.getComputedStyle(elem).getPropertyValue("backhround-color");
-    var font_size = window.getComputedStyle(elem).getPropertyValue("font-size");
-
-    //color = color.replace("rgb(", "");
-    //color = color.replace(")", "");
-    //var elemClr = color.split(", ");
-
-    //color = rgbToHex(parseInt(elemClr[0]), parseInt(elemClr[1]), parseInt(elemClr[2]));
-
-    //background_color = background_color.replace("rgb(", "");
-    //background_color = background_color.replace(")", "");
-    //var elembgClr = background_color.split(", ");
-
-    //background_color = rgbToHex(parseInt(elembgClr[0]), parseInt(elembgClr[1]), parseInt(elembgClr[2]));
-
-    setInterval(function() { event_target.style.color = document.getElementById("elemFC").value; }, 100);
-
-}
-*/
 
 
 document.addEventListener("keydown", (x)=>{
@@ -206,22 +183,6 @@ function reconstructColor(scribble_val){
     else{
         //alert("ID DECLARED -> "+id);
         if(css.includes(id)){
-            /*var temp1 = null;
-            var temp2 = null;
-            var scr = 0;
-            var parent = null;
-            var elements_in_DOM = document.getElementsByClassName("ace_type");
-            //console.log(elements_in_DOM);
-            for(var k=0; k<elements_in_DOM.length; k++){
-                if(elements_in_DOM[k].innerHTML == "color"){
-                    //temp1[scr] = String(elements_in_DOM[k]);
-                    //scr++;
-                    parent = elements_in_DOM[k].parentElement;
-                    temp1 = parent.querySelector(".ace_constant");
-                    temp1.innerHTML = scribble_val;
-                    //console.log(temp1);
-                }
-            }*/
 
             content = css.substring(css.indexOf('#'+id));
             content = content.substring(0, content.indexOf('}')+1);
@@ -339,22 +300,6 @@ function reconstructBgColor(scribble_val){
 
     //--------------------------------------------
 
-    /*
-    if(id == ''){
-        alert("ID: null");
-    }
-    else{
-        alert("ID: " + id);
-    }
-    if(class_grab == ''){
-        alert("Classes: null");
-    }
-    else{
-        alert("Classes: " + class_grab);
-    }
-    alert("TagName: " + tagName);
-    */
-
     var number_of_classes_used = null;
 
 
@@ -366,22 +311,6 @@ function reconstructBgColor(scribble_val){
     else{
         //alert("ID DECLARED -> "+id);
         if(css.includes(id)){
-            /*var temp1 = null;
-            var temp2 = null;
-            var scr = 0;
-            var parent = null;
-            var elements_in_DOM = document.getElementsByClassName("ace_type");
-            //console.log(elements_in_DOM);
-            for(var k=0; k<elements_in_DOM.length; k++){
-                if(elements_in_DOM[k].innerHTML == "color"){
-                    //temp1[scr] = String(elements_in_DOM[k]);
-                    //scr++;
-                    parent = elements_in_DOM[k].parentElement;
-                    temp1 = parent.querySelector(".ace_constant");
-                    temp1.innerHTML = scribble_val;
-                    //console.log(temp1);
-                }
-            }*/
 
             content = css.substring(css.indexOf('#'+id));
             content = content.substring(0, content.indexOf('}')+1);
