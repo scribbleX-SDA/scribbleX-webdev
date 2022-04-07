@@ -114,11 +114,16 @@ function savecode(){
     xmlhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             response = this.responseText;
-            if(response == "complete"){
-                alert("Saved");
+            if(response == "Exists"){
+                swal("Oops! Problem", "A project already exists.", "error");
+                //alert("Please choose a different name of your current project.");
+            }
+            else if(response == "Complete"){
+                swal("Great!", "Project is Saved Successfully.", "success");
             }
         }
     };
     xmlhttp.open("GET", "source_code_management.php?html="+htmlSnippet+"&css="+cssSnippet+"&js="+jsSnippet+"&name="+name);
     xmlhttp.send();
+    console.log("source_code_management.php?html="+htmlSnippet+"&css="+cssSnippet+"&js="+jsSnippet+"&name="+name+"&sec=public");
 }

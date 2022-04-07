@@ -1,3 +1,10 @@
+<!--
+    ScribbleX -- Static Web Builder
+
+    Developer Name: Kshitij S. Tyagi
+    Contact: scribblex.dev@gmail.com
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,37 +12,88 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!--
+        TITLE OF THE APP
+    -->
     <title>
         web sandbox | scribbleX
     </title>
+    <!--
+        ==================================================================================================================
+    -->
 
+    <!--  CSS FILES LINKED HERE  -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/scrollbar.css">
+    <link rel="stylesheet" href="css/input_color.css">
+    <!--
+        ==================================================================================================================
+    -->
 
+    <!--  FAVICON FILE LINKED HERE  -->
     <link rel="icon" type="image/x-icon" href="assets/fav/kt23.ico">
 
     
+    <!--  JS LIBRARIES AND SCRIPTS  -->
     <script src="js/libraries/jQuery.js"></script>
     <script src="js/libraries/split.js"></script>
     <script src="js/libraries/sweetalert.js"></script>
+    
     <script src="js/ace-builds-master/src/ace.js"></script>
     <script src="js/ace-builds-master/src/ext-language_tools.js"></script>
-
     <script src="js/ace-builds-master/src/mode-javascript.js"></script>
-    
-    
+
     <script src="js/src/init.js"></script>
     <!--<script src="js/src/builder_gui.js"></script>-->
+    <!--
+        ==================================================================================================================
+    -->
+    <style>
+        @font-face {
+            font-family: 'terminal';
+            src: url('assets/');
+            src: url('assets/?#iefix') format('embedded-opentype'),
+                url('assets/fonts/terminal/terminal.woff2') format('woff2'),
+                url('assets/fonts/terminal/terminal.woff') format('woff'),
+                url('assets/fonts/terminal/terminal.ttf') format('truetype'),
+            url('assets/fonts/terminal/terminal.svg#fonts/terminal/terminal') format('svg');
+        }
+    </style>
+
 </head>
 <body onload="init();" onresize="init();">
     <script>
-        document.onkeydown = function(e) {
-            if(e.ctrlKey && e.shiftKey && e.which == 82){
+        //  ON DETECTING CRTL + SHIFT + l --> inspector()
+        var isCtrlHold = false;
+        var isShiftHold = false;
+
+        $(document).keyup(function (e) {
+            if (e.which == 17) //17 is the code of Ctrl button
+                isCtrlHold = false;
+            if (e.which == 16) //16 is the code of Shift button
+                isShiftHold = false;
+        });
+        $(document).keydown(function (e) {
+            if (e.which == 17)
+                isCtrlHold = true;
+            if (e.which == 16)
+                isShiftHold = true;
+        
+            ShortcutManager(e);
+        });
+
+        function ShortcutManager(e){
+            if(isCtrlHold && isShiftHold && e.which == 82){
+                e.preventDefault(); //prevent browser from the default behavior
+                //alert("Ctrl+R is pressed");
                 inspector();
             }
-        };
+        }
     </script>
-    <div id="main_container">
+    <!--
+        ==================================================================================================================
+    -->
+    <div id="main_container">   <!--  THIS IS THE MAIN CONTAINER OF THE APP  -->
         <div id="top_header">
             &nbsp;
             <img src="assets/logo/logox.png" alt="scribbleX"
@@ -55,7 +113,7 @@
                         </button>
                     </center>
                 </div>
-                <div style="height: 50px; width: 100%; display: block;">
+                <div style="height: 15px; width: 100%; display: block;">
                     <!--
                         EMPTY SPACE
                     -->
@@ -77,10 +135,9 @@
                         <div id="toolsPanel">
                             <div id="toolsPanel_header"></div>
                             <div id="toolsPanel_container" style="color: white;">
-                                <br>
-                                <button id="GUIEditor_Button">GUI Editor</button>
+                                <!--<button id="GUIEditor_Button">GUI Editor</button>-->
                                 <!-- onclick="activateGUIEditor();" -->
-                                <span id="GUIEditor_stat">OFF</span>
+                                <!--<span id="GUIEditor_stat">OFF</span>-->
                                 <!--
                                 <script>
                                     document.getElementById("GUIEditor_Button").addEventListener('click', ()=>{
@@ -89,17 +146,20 @@
                                 </script>
                                 -->
                                 <br>
-                                <br>
-                                <label for="elemHeihgt">Height</label>
-                                <input type="number" name="" id="elemHeight" step="0.01" value="">
-                                <br>
-                                <label for="elemWidth">Width</label>
-                                <input type="number" id="elemWidth" step="0.01" value="">
+                                <label for="elemHeihgt" style="font-size: 15px;">Height:</label>
+                                <input type="number" name="" id="elemHeight" step="0.01" value="" class="elemDim">
                                 <br>
                                 <br>
-                                <span>Background Color: </span><input type="color" name="" id="elemBGC" value="" onchange="bgcolor(this.value);" oninput="bgcolor(this.value);">
+                                <label for="elemWidth" style="font-size: 15px;">Width:</label>
+                                <input type="number" id="elemWidth" step="0.01" value="" class="elemDim">
                                 <br>
-                                <span>Font Color: </span><input type="color" name="" id="elemFC" value="" onchange="fontColor(this.value);" oninput="fontColor(this.value);">
+                                <br>
+                                <br>
+                                <span style="font-size: 15px;">Background Color: </span><input type="color" name="" id="elemBGC" value="" onchange="bgcolor(this.value);" oninput="bgcolor(this.value);">
+                                <br>
+                                <br>
+                                <br>
+                                <span style="font-size: 15px;">Font Color: </span><input type="color" name="" id="elemFC" value="" onchange="fontColor(this.value);" oninput="fontColor(this.value);">
                             </div>
                             <div id="toolsPanel_footer"></div>
                         </div>
@@ -214,7 +274,13 @@
                 </div>
             </div>
         </div>
-        <div id="bottom_footer"></div>
+        <div id="bottom_footer">
+            <center><div style="color: rgb(136, 136, 136); font-size: 15px; font-family: 'terminal';">
+                <span style="display: inline-block;">Made with </span>
+                <img src="assets/icons/heart.png" alt="Love" style="width: 15px; display: inline-block;">
+                <span style="display: inline-block">by Kshitij S. Tyagi</span>
+            </div></center>
+        </div>
     </div>
 
     <script src="js/src/script.js"></script>

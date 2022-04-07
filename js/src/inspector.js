@@ -225,7 +225,7 @@ function reconstructColor(scribble_val){
 
             content = css.substring(css.indexOf('#'+id));
             content = content.substring(0, content.indexOf('}')+1);
-            console.log(content);
+            //console.log(content);
             content = String(content);
 
             var x123 = null;
@@ -237,10 +237,23 @@ function reconstructColor(scribble_val){
             for(var k=0; k<temp23.length; k++){
                 if(temp23[k] == 'c' && temp23[k+1] == 'o' && temp23[k+2] == 'l' && temp23[k-1] != '-'){
                     //alert("FOUND IT");
+                    //console.log(temp23[k-1]);
                     x123 = k;
+                    temp23 = temp23.substring(x123);
+                    var spl_temp = temp23.split(";");
+                    temp23 = spl_temp[0];
+                    //alert(temp23);
+                    var x44 = content.replace(temp23, "color: "+scribble_val);
+
+                    css = css.replace(content, x44);
+                    cssEditor.setValue(css);
                     break;
+                }else{
+                    swal("Oops", "'color' attribute is not declared in #"+id+".", "error");
+                    inspector();
                 }
             }
+            /*
             temp23 = temp23.substring(x123);
             var spl_temp = temp23.split(";");
             temp23 = spl_temp[0];
@@ -249,6 +262,7 @@ function reconstructColor(scribble_val){
 
             css = css.replace(content, x44);
             cssEditor.setValue(css);
+            */
         }
     }
 
@@ -259,10 +273,45 @@ function reconstructColor(scribble_val){
         //alert("CLASSES DECLARED -> "+class_grab);
         class_grab = String(class_grab);
         classArray = class_grab.split(" ");
-        for(var i=0; i<classArray.length(); i++){
+        for(var i=0; i<classArray.length; i++){
             if(css.includes(classArray[i])){
                 //number_of_classes_used += 1;
                 //alert("CSS GOT CLASS: "+classArray[i]);
+
+                var content = css.substring(css.indexOf('.'+classArray[i]));
+                content = content.substring(0, content.indexOf('}')+1);
+                //console.log(content);
+                content = String(content);
+
+                var x123 = null;
+
+                //console.log(content);
+                var temp23 = content;
+                temp23 = temp23.replace("."+classArray[i]+"{", '');
+                temp23 = temp23.replace("{", "");
+                for(var k=0; k<temp23.length; k++){
+                    if(temp23[k] == 'c' && temp23[k+1] == 'o' && temp23[k+2] == 'l' && temp23[k-1] != '-'){
+                        //alert("FOUND IT");
+                        //console.log(temp23[k-1]);
+                        console.assert("CLASS WORKING");
+                        x123 = k;
+                        temp23 = temp23.substring(x123);
+                        var spl_temp = temp23.split(";");
+                        temp23 = spl_temp[0];
+                        //alert(temp23);
+                        var x44 = content.replace(temp23, "color: "+scribble_val);
+
+                        css = css.replace(content, x44);
+                        cssEditor.setValue(css);
+                        break;
+                    }else{
+                        //swal("Oops", "'color' attribute is not declared in ."+classArray[i]+".", "error");
+                        //inspector();
+                    }
+                }
+            }else{
+                swal("Oops", "'color' attribute is not declared in ."+classArray[i]+".", "error");
+                inspector();
             }
         }
     }
@@ -349,9 +398,21 @@ function reconstructBgColor(scribble_val){
                 if(temp23[k] == 'b' && temp23[k+3] == 'k' && temp23[k+9] == 'd' && temp23[k+15] == 'r'){
                     //alert("FOUND IT");
                     x123 = k;
+                    temp23 = temp23.substring(x123);
+                    var spl_temp = temp23.split(";");
+                    temp23 = spl_temp[0];
+                    //alert(temp23);
+                    var x44 = content.replace(temp23, "background-color: "+scribble_val);
+
+                    css = css.replace(content, x44);
+                    cssEditor.setValue(css);
                     break;
+                }else{
+                    swal("Oops", "'background-color' attribute is not declared in #"+id+".", "error");
+                    inspector();
                 }
             }
+            /*
             temp23 = temp23.substring(x123);
             var spl_temp = temp23.split(";");
             temp23 = spl_temp[0];
@@ -360,6 +421,7 @@ function reconstructBgColor(scribble_val){
 
             css = css.replace(content, x44);
             cssEditor.setValue(css);
+            */
         }
     }
 
@@ -370,10 +432,45 @@ function reconstructBgColor(scribble_val){
         //alert("CLASSES DECLARED -> "+class_grab);
         class_grab = String(class_grab);
         classArray = class_grab.split(" ");
-        for(var i=0; i<classArray.length(); i++){
+        for(var i=0; i<classArray.length; i++){
             if(css.includes(classArray[i])){
                 //number_of_classes_used += 1;
                 //alert("CSS GOT CLASS: "+classArray[i]);
+                
+                var content = css.substring(css.indexOf('.'+classArray[i]));
+                content = content.substring(0, content.indexOf('}')+1);
+                //console.log(content);
+                content = String(content);
+
+                var x123 = null;
+
+                //console.log(content);
+                var temp23 = content;
+                temp23 = temp23.replace("."+classArray[i]+"{", '');
+                temp23 = temp23.replace("{", "");
+                for(var k=0; k<temp23.length; k++){
+                    if(temp23[k] == 'b' && temp23[k+3] == 'k' && temp23[k+9] == 'd' && temp23[k+15] == 'r'){
+                        //alert("FOUND IT");
+                        //console.log(temp23[k-1]);
+                        console.assert("CLASS WORKING");
+                        x123 = k;
+                        temp23 = temp23.substring(x123);
+                        var spl_temp = temp23.split(";");
+                        temp23 = spl_temp[0];
+                        //alert(temp23);
+                        var x44 = content.replace(temp23, "background-color: "+scribble_val);
+
+                        css = css.replace(content, x44);
+                        cssEditor.setValue(css);
+                        break;
+                    }else{
+                        //swal("Oops", "'color' attribute is not declared in ."+classArray[i]+".", "error");
+                        //inspector();
+                    }
+                }
+            }else{
+                swal("Oops", "'background-color' attribute is not declared in ."+classArray[i]+".", "error");
+                inspector();
             }
         }
     }
