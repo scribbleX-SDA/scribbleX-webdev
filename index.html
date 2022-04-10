@@ -60,10 +60,49 @@
         }
     </style>
 
+    <script>
+        function get_db(db_val){
+            // grab the value here from the browser and return the required value
+        }
+
+        function check_db(){
+            let username = get_db("userid");
+            let authkey = get_db("authkey");
+            let response = '';
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    response = this.responseText;
+                    if(response == "granted"){
+                        // user_granted_db();
+                        // the above function is called when the 
+                        // user's cookies are found and they match the main database
+                        // make changes accordingly with the called function
+                    }
+                    else{
+                        // user_notGranted_db();
+                        // the above function is called when the
+                        // user's cookies don't match the database
+                        // make changes accordingly with the called function
+                    }
+                }
+            };
+            xmlhttp.open("GET", "http://dbmgr.scribblex.ml?userid="+username+"&authkey="+authkey);
+            xmlhttp.send();
+        }
+
+        function create_db(db_name, db_val, time){
+            // create cookie
+            // FOllow the way below
+
+            // db_name = db_val;
+        }
+    </script>
+
 </head>
 <body onload="init();" onresize="init();">
     <script>
-        //  ON DETECTING CRTL + SHIFT + l --> inspector()
+        //  ON DETECTING CRTL + SHIFT + R --> inspector()
         var isCtrlHold = false;
         var isShiftHold = false;
 
@@ -101,7 +140,12 @@
             >
         </div>
         <div id="appContainer">
-            <div id="leftContainer"></div>
+            <div id="leftContainer" style="outline-style: solid; outline-color: rgb(127, 0, 115); outline-width: 1px; outline-offset: -2px;">
+                <div id="leftContainer_inner">
+                    <img src="assets/icons/user.png" alt="User"
+                    style="width: 34px; position: absolute; bottom: 10px; margin-left: auto; margin-right: auto; right: 0; padding-right: 8px; cursor: pointer;" title="User" onclick="connect_user();">
+                </div>
+            </div>
 
             <div id="centerContainer">
                 <br>
@@ -297,8 +341,36 @@
             <center><div style="color: rgb(136, 136, 136); font-size: 15px; font-family: 'terminal';">
                 <span style="display: inline-block;">Made with </span>
                 <img src="assets/icons/heart.png" alt="Love" style="width: 15px; display: inline-block;">
-                <span style="display: inline-block">by Kshitij S. Tyagi</span>
+                <!--<span style="display: inline-block">by Kshitij S. Tyagi</span>-->
+                <span> and Coffee</span>
             </div></center>
+        </div>
+    </div>
+
+    <div id="connect_user" style="display: none;">
+        <div id="login">
+            <div id="login_topContainer">
+                <div style="width: 100%; height: 15px; display: block;"></div>
+                <img src="assets/icons/close.png" alt="close" style="float: right; padding-right: 15px; display: block; width: 35px; cursor: pointer;" onclick="close_connect();">
+                <center>
+                    <br><br><br>
+                    <h2 style="color: rgb(2, 2, 224);">Login</h2>
+                    <br>
+                <input type="text" placeholder="User ID" class="loginInp" autocomplete="off" spellcheck="false">
+                <br>
+                <br>
+                <input type="password" placeholder="Password" class="loginInp" autocomplete="off" spellcheck="false">
+                <br>
+                <br>
+                <br>
+                <span class="loginBtn">Login</span>
+                <br>
+                <br>
+                <br>
+                <br>
+                <span style="font-size: 17px;">Don't have an account? <span style="color: blue; text-decoration: underline; cursor: pointer;" onclick="createacc();">Create New Account.</span></span>
+                </center>
+            </div>
         </div>
     </div>
 
@@ -306,7 +378,16 @@
     <script src="js/src/inspector.js"></script>
     <!--<script src="js/src/renderContent.js"></script>-->
     <script>
-        
+        function connect_user(){
+            //var ex = check_db(); // check the cookies
+            document.getElementById("connect_user").style.display = "block";
+            document.getElementById("main_container").style.display = "none";
+        }
+
+        function close_connect(){
+            document.getElementById("connect_user").style.display = "none";
+            document.getElementById("main_container").style.display = "block";
+        }
     </script>
 </body>
 </html>

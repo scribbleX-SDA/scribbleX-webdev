@@ -210,7 +210,6 @@ function reconstructColor(scribble_val){
                     cssEditor.setValue(css);
                     break;
                 }else{
-                    swal("Oops", "'color' attribute is not declared in #"+id+".", "error");
                     inspector();
                 }
             }
