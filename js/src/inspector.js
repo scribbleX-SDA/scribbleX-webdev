@@ -149,7 +149,10 @@ function bgcolor(eVal){
 function reconstructColor(scribble_val){
     var elem_idoc = eloc;
 
+    var q = null;
+
     var tagName = elem_idoc.tagName;
+    tagName = tagName.toLowerCase();
     var id = elem_idoc.id;
     var class_grab = elem_idoc.classList;
     var classArray = 0;
@@ -183,35 +186,39 @@ function reconstructColor(scribble_val){
     else{
         //alert("ID DECLARED -> "+id);
         if(css.includes(id)){
+            if(q == null){
+                content = css.substring(css.indexOf('#'+id));
+                content = content.substring(0, content.indexOf('}')+1);
+                //console.log(content);
+                content = String(content);
 
-            content = css.substring(css.indexOf('#'+id));
-            content = content.substring(0, content.indexOf('}')+1);
-            //console.log(content);
-            content = String(content);
+                var x123 = null;
 
-            var x123 = null;
+                //console.log(content);
+                var temp23 = content;
+                temp23 = temp23.replace("#"+id+"{", '');
+                temp23 = temp23.replace("}", "");
+                for(var k=0; k<temp23.length; k++){
+                    if(temp23[k] == 'c' && temp23[k+1] == 'o' && temp23[k+2] == 'l' && temp23[k-1] != '-'){
+                        //alert("FOUND IT");
+                        //console.log(temp23[k-1]);
+                        x123 = k;
+                        temp23 = temp23.substring(x123);
+                        var spl_temp = temp23.split(";");
+                        temp23 = spl_temp[0];
+                        //alert(temp23);
+                        var x44 = content.replace(temp23, "color: "+scribble_val);
 
-            //console.log(content);
-            var temp23 = content;
-            temp23 = temp23.replace("#"+id+"{", '');
-            temp23 = temp23.replace("{", "");
-            for(var k=0; k<temp23.length; k++){
-                if(temp23[k] == 'c' && temp23[k+1] == 'o' && temp23[k+2] == 'l' && temp23[k-1] != '-'){
-                    //alert("FOUND IT");
-                    //console.log(temp23[k-1]);
-                    x123 = k;
-                    temp23 = temp23.substring(x123);
-                    var spl_temp = temp23.split(";");
-                    temp23 = spl_temp[0];
-                    //alert(temp23);
-                    var x44 = content.replace(temp23, "color: "+scribble_val);
-
-                    css = css.replace(content, x44);
-                    cssEditor.setValue(css);
-                    break;
-                }else{
-                    inspector();
+                        css = css.replace(content, x44);
+                        cssEditor.setValue(css);
+                        q = 1;
+                        break;
+                    }else{
+                        inspector();
+                    }
                 }
+            }else{
+                q = 1;
             }
             /*
             temp23 = temp23.substring(x123);
@@ -230,54 +237,89 @@ function reconstructColor(scribble_val){
         //alert("CLASS(ES) NOT DECLARED");
     }
     else{
-        //alert("CLASSES DECLARED -> "+class_grab);
-        class_grab = String(class_grab);
-        classArray = class_grab.split(" ");
-        for(var i=0; i<classArray.length; i++){
-            if(css.includes(classArray[i])){
-                //number_of_classes_used += 1;
-                //alert("CSS GOT CLASS: "+classArray[i]);
+        if(q == null){
+            //alert("CLASSES DECLARED -> "+class_grab);
+            class_grab = String(class_grab);
+            classArray = class_grab.split(" ");
+            for(var i=0; i<classArray.length; i++){
+                if(css.includes(classArray[i])){
+                    //number_of_classes_used += 1;
+                    //alert("CSS GOT CLASS: "+classArray[i]);
 
-                var content = css.substring(css.indexOf('.'+classArray[i]));
-                content = content.substring(0, content.indexOf('}')+1);
-                //console.log(content);
-                content = String(content);
+                    var content = css.substring(css.indexOf('.'+classArray[i]));
+                    content = content.substring(0, content.indexOf('}')+1);
+                    //console.log(content);
+                    content = String(content);
 
-                var x123 = null;
+                    var x123 = null;
 
-                //console.log(content);
-                var temp23 = content;
-                temp23 = temp23.replace("."+classArray[i]+"{", '');
-                temp23 = temp23.replace("{", "");
-                for(var k=0; k<temp23.length; k++){
-                    if(temp23[k] == 'c' && temp23[k+1] == 'o' && temp23[k+2] == 'l' && temp23[k-1] != '-'){
-                        //alert("FOUND IT");
-                        //console.log(temp23[k-1]);
-                        console.assert("CLASS WORKING");
-                        x123 = k;
-                        temp23 = temp23.substring(x123);
-                        var spl_temp = temp23.split(";");
-                        temp23 = spl_temp[0];
-                        //alert(temp23);
-                        var x44 = content.replace(temp23, "color: "+scribble_val);
+                    //console.log(content);
+                    var temp23 = content;
+                    temp23 = temp23.replace("."+classArray[i]+"{", '');
+                    temp23 = temp23.replace("}", "");
+                    for(var k=0; k<temp23.length; k++){
+                        if(temp23[k] == 'c' && temp23[k+1] == 'o' && temp23[k+2] == 'l' && temp23[k-1] != '-'){
+                            //alert("FOUND IT");
+                            //console.log(temp23[k-1]);
+                            console.assert("CLASS WORKING");
+                            x123 = k;
+                            temp23 = temp23.substring(x123);
+                            var spl_temp = temp23.split(";");
+                            temp23 = spl_temp[0];
+                            //alert(temp23);
+                            var x44 = content.replace(temp23, "color: "+scribble_val);
 
-                        css = css.replace(content, x44);
-                        cssEditor.setValue(css);
-                        break;
-                    }else{
-                        //swal("Oops", "'color' attribute is not declared in ."+classArray[i]+".", "error");
-                        //inspector();
+                            css = css.replace(content, x44);
+                            cssEditor.setValue(css);
+                            break;
+                        }else{
+                            //swal("Oops", "'color' attribute is not declared in ."+classArray[i]+".", "error");
+                            //inspector();
+                        }
                     }
+                }else{
+                    swal("Oops", "'color' attribute is not declared in ."+classArray[i]+".", "error");
+                    inspector();
                 }
-            }else{
-                swal("Oops", "'color' attribute is not declared in ."+classArray[i]+".", "error");
-                inspector();
             }
+        }else{
+            q = 1;
         }
     }
 
     if(css.includes(tagName)){
-        //alert("CSS GOT TAGNAME: "+tagName);
+        if(q == null){
+            //alert("CSS GOT TAGNAME: "+tagName);
+            content = css.substring(css.indexOf(tagName));
+            content = content.substring(0, content.indexOf('}')+1);
+            //console.log(content);
+            content = String(content);
+
+            var temp23 = content;
+            temp23 = temp23.replace(tagName+"{", "");
+            temp23 = temp23.replace("}", "");
+            //console.log(temp23);
+
+            var x123 = null;
+
+            for(var k=0; k<temp23.length; k++){
+                if(temp23[k] == 'c' && temp23[k+1] == 'o' && temp23[k+2] == 'l' && temp23[k-1] != '-'){
+                    //alert("FOUND IT");
+                    x123 = k;
+                    temp23 = temp23.substring(x123);
+                    var spl_temp = temp23.split(";");
+                    temp23 = spl_temp[0];
+                    //alert(temp23);
+                    var x44 = content.replace(temp23, "color: "+scribble_val);
+
+                    css = css.replace(content, x44);
+                    cssEditor.setValue(css);
+                    break;
+                }
+            }
+        }else{
+            q = 1;
+        }
     }
     else{
         //alert("CSS DOESN'T USE TAGNAME");
@@ -292,7 +334,10 @@ function reconstructColor(scribble_val){
 function reconstructBgColor(scribble_val){
     var elem_idoc = eloc;
 
+    var q = null;
+
     var tagName = elem_idoc.tagName;
+    tagName = tagName.toLowerCase();
     var id = elem_idoc.id;
     var class_grab = elem_idoc.classList;
     var classArray = 0;
@@ -313,7 +358,7 @@ function reconstructBgColor(scribble_val){
 
             content = css.substring(css.indexOf('#'+id));
             content = content.substring(0, content.indexOf('}')+1);
-            console.log(content);
+            //console.log(content);
             content = String(content);
 
             var x123 = null;
@@ -321,7 +366,7 @@ function reconstructBgColor(scribble_val){
             //console.log(content);
             var temp23 = content;
             temp23 = temp23.replace("#"+id+"{", '');
-            temp23 = temp23.replace("{", "");
+            temp23 = temp23.replace("}", "");
             for(var k=0; k<temp23.length; k++){
                 if(temp23[k] == 'b' && temp23[k+3] == 'k' && temp23[k+9] == 'd' && temp23[k+15] == 'r'){
                     //alert("FOUND IT");
@@ -334,9 +379,10 @@ function reconstructBgColor(scribble_val){
 
                     css = css.replace(content, x44);
                     cssEditor.setValue(css);
+                    q = 1;
                     break;
                 }else{
-                    swal("Oops", "'background-color' attribute is not declared in #"+id+".", "error");
+                    //swal("Oops", "'background-color' attribute is not declared in #"+id+".", "error");
                     inspector();
                 }
             }
@@ -357,54 +403,91 @@ function reconstructBgColor(scribble_val){
         //alert("CLASS(ES) NOT DECLARED");
     }
     else{
-        //alert("CLASSES DECLARED -> "+class_grab);
-        class_grab = String(class_grab);
-        classArray = class_grab.split(" ");
-        for(var i=0; i<classArray.length; i++){
-            if(css.includes(classArray[i])){
-                //number_of_classes_used += 1;
-                //alert("CSS GOT CLASS: "+classArray[i]);
+        if(q == null){
+            //alert("CLASSES DECLARED -> "+class_grab);
+            class_grab = String(class_grab);
+            classArray = class_grab.split(" ");
+            for(var i=0; i<classArray.length; i++){
+                if(css.includes(classArray[i])){
+                    //number_of_classes_used += 1;
+                    //alert("CSS GOT CLASS: "+classArray[i]);
                 
-                var content = css.substring(css.indexOf('.'+classArray[i]));
-                content = content.substring(0, content.indexOf('}')+1);
-                //console.log(content);
-                content = String(content);
+                    var content = css.substring(css.indexOf('.'+classArray[i]));
+                    content = content.substring(0, content.indexOf('}')+1);
+                    //console.log(content);
+                    content = String(content);
 
-                var x123 = null;
+                    var x123 = null;
 
-                //console.log(content);
-                var temp23 = content;
-                temp23 = temp23.replace("."+classArray[i]+"{", '');
-                temp23 = temp23.replace("{", "");
-                for(var k=0; k<temp23.length; k++){
-                    if(temp23[k] == 'b' && temp23[k+3] == 'k' && temp23[k+9] == 'd' && temp23[k+15] == 'r'){
-                        //alert("FOUND IT");
-                        //console.log(temp23[k-1]);
-                        console.assert("CLASS WORKING");
-                        x123 = k;
-                        temp23 = temp23.substring(x123);
-                        var spl_temp = temp23.split(";");
-                        temp23 = spl_temp[0];
-                        //alert(temp23);
-                        var x44 = content.replace(temp23, "background-color: "+scribble_val);
+                    //console.log(content);
+                    var temp23 = content;
+                    temp23 = temp23.replace("."+classArray[i]+"{", '');
+                    temp23 = temp23.replace("}", "");
+                    for(var k=0; k<temp23.length; k++){
+                        if(temp23[k] == 'b' && temp23[k+3] == 'k' && temp23[k+9] == 'd' && temp23[k+15] == 'r'){
+                            //alert("FOUND IT");
+                            //console.log(temp23[k-1]);
+                            console.assert("CLASS WORKING");
+                            x123 = k;
+                            temp23 = temp23.substring(x123);
+                            var spl_temp = temp23.split(";");
+                            temp23 = spl_temp[0];
+                            //alert(temp23);
+                            var x44 = content.replace(temp23, "background-color: "+scribble_val);
 
-                        css = css.replace(content, x44);
-                        cssEditor.setValue(css);
-                        break;
-                    }else{
-                        //swal("Oops", "'color' attribute is not declared in ."+classArray[i]+".", "error");
-                        //inspector();
+                            css = css.replace(content, x44);
+                            cssEditor.setValue(css);
+                            q = 1;
+                            break;
+                        }else{
+                            //swal("Oops", "'color' attribute is not declared in ."+classArray[i]+".", "error");
+                            //inspector();
+                        }
                     }
+                }else{
+                    //swal("Oops", "'background-color' attribute is not declared in ."+classArray[i]+".", "error");
+                    inspector();
                 }
-            }else{
-                swal("Oops", "'background-color' attribute is not declared in ."+classArray[i]+".", "error");
-                inspector();
             }
+        }else{
+            q = 1;
         }
     }
 
     if(css.includes(tagName)){
-        //alert("CSS GOT TAGNAME: "+tagName);
+        if(q == null){
+            //alert("CSS GOT TAGNAME: "+tagName);
+            content = css.substring(css.indexOf(tagName));
+            content = content.substring(0, content.indexOf('}')+1);
+            //console.log(content);
+            content = String(content);
+
+            var temp23 = content;
+            temp23 = temp23.replace(tagName+"{", "");
+            temp23 = temp23.replace("}", "");
+            //console.log(temp23);
+
+            var x123 = null;
+
+            for(var k=0; k<temp23.length; k++){
+                if(temp23[k] == 'b' && temp23[k+3] == 'k' && temp23[k+9] == 'd' && temp23[k+15] == 'r'){
+                    //alert("FOUND IT");
+                    x123 = k;
+                    temp23 = temp23.substring(x123);
+                    var spl_temp = temp23.split(";");
+                    temp23 = spl_temp[0];
+                    //alert(temp23);
+                    var x44 = content.replace(temp23, "background-color: "+scribble_val);
+
+                    css = css.replace(content, x44);
+                    cssEditor.setValue(css);
+                    q = 1;
+                    break;
+                }
+            }
+        }else{
+            q = 1;
+        }
     }
     else{
         //alert("CSS DOESN'T USE TAGNAME");

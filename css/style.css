@@ -323,6 +323,12 @@ html, body{
     color: white;
 }
 
+#save_btn{
+    background-color: transparent;
+    color: white;
+    border-color: purple;
+    border-radius: 20px;
+}
 
 /*
 
