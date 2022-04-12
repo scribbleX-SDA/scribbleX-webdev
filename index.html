@@ -376,8 +376,8 @@
 
         function connect_exist(){
             var x = document.getElementsByClassName("loginInp");
-            var username = String(x[0]);
-            var password = String(x[1]);
+            var username = String(x[0].value);
+            var password = String(x[1].value);
             var connect = new XMLHttpRequest();
             var response = '';
             connect.onreadystatechange = function(){
