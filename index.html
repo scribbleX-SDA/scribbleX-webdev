@@ -348,7 +348,7 @@
                 <br>
                 <br>
                 <br>
-                <span class="loginBtn">Login</span>
+                <span class="loginBtn" onclick="connect_exist();">Login</span>
                 <br>
                 <br>
                 <br>
@@ -372,6 +372,31 @@
         function close_connect(){
             document.getElementById("connect_user").style.display = "none";
             document.getElementById("main_container").style.display = "block";
+        }
+
+        function connect_exist(){
+            var x = document.getElementsByClassName("loginInp");
+            var connect = new XMLHttpRequest();
+            var response = '';
+            connect.onreadystatechange = function(){
+                if(this.status == 200 && this.readyState == 4){
+                    response = this.responseText;
+                    if(response == "noexistance"){
+                        swal("Oops!", x[0]+" is not registered.", "error");
+                    }
+                    else if(response == "inc_pass"){
+                        swal("Oops!", "The password you entered is incorrect.", "error");
+                    }
+                    else if(response == "success"){
+                        swal("Great!", "Login Successful", "good");
+                    }
+                    else{
+                        alert(response);
+                    }
+                }
+            };
+            connect.open("GET", "https://dbmgr.scribblex.net/connect_exist.php?un="+x[0]+"&pass="+x[1]);
+            connect.send();
         }
     </script>
 </body>
