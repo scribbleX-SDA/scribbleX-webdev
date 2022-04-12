@@ -75,6 +75,10 @@
             // FOllow the way below
 
             // db_name = db_val;
+            const date = new Date();
+            date.setTime(date.getTime() + (time*24*60*60*1000));
+            let expires = "expires="+ date.toUTCString();
+            document.cookie = db_name + "=" + db_val + ";" + expires + ";domain=scribblex.net; path=/";
         }
     </script>
 
@@ -384,13 +388,28 @@
                 if(this.status == 200 && this.readyState == 4){
                     response = this.responseText;
                     if(response == "noexistance"){
-                        swal("Oops!", x[0]+" is not registered.", "error");
+                        alert(username+" is not registered.");
                     }
                     else if(response == "inc_pass"){
-                        swal("Oops!", "The password you entered is incorrect.", "error");
+                        alert("The entered password is incorrect\nPlease try again.");
                     }
                     else if(response == "success"){
-                        swal("Great!", "Login Successful", "good");
+                        // Create Cookies and etc here.
+                        var memberType = '';
+                        var mType = new XMLHttpRequest();
+                        mType.onreadystatechange = function(){
+                            if(this.status == 200 && this.readyState == 4){
+                                if(this.responseText != "ERROR 6975"){
+                                    memberType = this.responseText;
+                                    create_db("username", username, 15);
+                                    create_db("member", memberType, 15);
+                                }else{
+                                    alert("Error 6975");
+                                }
+                            }
+                        };
+                        mType.open("GET", "https://dbmgr.scribblex.net/get_mtype.php?username="+username, true);
+                        mType.send();
                     }
                     else{
                         alert(response);
