@@ -376,6 +376,8 @@
 
         function connect_exist(){
             var x = document.getElementsByClassName("loginInp");
+            var username = String(x[0]);
+            var password = String(x[1]);
             var connect = new XMLHttpRequest();
             var response = '';
             connect.onreadystatechange = function(){
@@ -395,7 +397,7 @@
                     }
                 }
             };
-            connect.open("GET", "https://dbmgr.scribblex.net/connect_exist.php?un="+x[0]+"&pass="+x[1], true);
+            connect.open("GET", "https://dbmgr.scribblex.net/connect_exist.php?un="+username+"&pass="+password, true);
             connect.send();
             console.log("https://dbmgr.scribblex.net/connect_exist.php?un="+x[0]+"&pass="+x[1]);
         }
