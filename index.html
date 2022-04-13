@@ -2,7 +2,7 @@
     ScribbleX -- Static Web Builder
 
     Developer Name: Kshitij S. Tyagi
-    Contact: scribblex.dev@gmail.com
+    Contact: info@scribblex.net
 -->
 
 <!DOCTYPE html>
@@ -61,13 +61,33 @@
     </style>
 
     <script>
-        function get_db(db_val){
+        function get_db(db_name){
             // grab the value here from the browser and return the required value
+            let name = db_name + "=";
+            let decodeCookie = decodeURIComponent(document.cookie);
+            let ca = decodeCookie.split(';');
+            for(let i=0; i<ca.length; i++){
+                let c = ca[i];
+                while(c.charAt(0) == ' '){
+                    c = c.substring(1);
+                }
+                if(c.indexOf(name) == 0){
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
         }
 
         function check_db(){
-            let username = get_db("userid");
-            let authkey = get_db("authkey");   
+            let userid = get_db("userid");
+            if(userid != ""){
+                // Call the respective commands/function(s) here if cookie is available
+                alert("Cookie There");
+            }
+            else{
+                // Cookie is not created. Call the respective function(s)/commands
+                alert("Cookie Not There");
+            }
         }
 
         function create_db(db_name, db_val, time){
@@ -403,6 +423,7 @@
                                     memberType = this.responseText;
                                     create_db("username", username, 15);
                                     create_db("member", memberType, 15);
+                                    close_connect();
                                 }else{
                                     alert("Error 6975");
                                 }
@@ -418,7 +439,7 @@
             };
             connect.open("GET", "https://dbmgr.scribblex.net/connect_exist.php?un="+username+"&pass="+password, true);
             connect.send();
-            console.log("https://dbmgr.scribblex.net/connect_exist.php?un="+username+"&pass="+password);
+            //console.log("https://dbmgr.scribblex.net/connect_exist.php?un="+username+"&pass="+password);
         }
     </script>
 </body>
