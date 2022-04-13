@@ -82,7 +82,7 @@
             let username = get_db("username");
             if(username != ""){
                 // Call the respective commands/function(s) here if cookie is available
-                
+                //document.getElementById("connect_user").removeAttribute("onclick");
                 //alert("Cookie There");
                 //alert(username);
             }
@@ -148,7 +148,7 @@
         <div id="appContainer">
             <div id="leftContainer" style="outline-style: solid; outline-color: rgb(127, 0, 115); outline-width: 1px; outline-offset: -2px;">
                 <div id="leftContainer_inner">
-                    <img src="assets/icons/user.png" alt="User"
+                    <img src="assets/icons/user.png" alt="User" id="user_account"
                     style="width: 34px; position: absolute; bottom: 10px; margin-left: auto; margin-right: auto; right: 0; padding-right: 8px; cursor: pointer;" title="User" onclick="connect_user();">
                 </div>
             </div>
@@ -384,6 +384,11 @@
                 </center>
             </div>
         </div>
+        <div id="signup">
+            <!--
+                SIGNUP FORM COMES UP HERE!
+            -->
+        </div>
     </div>
 
     <script src="js/src/script.js"></script>
@@ -443,6 +448,10 @@
             connect.open("GET", "https://dbmgr.scribblex.net/connect_exist.php?un="+username+"&pass="+password, true);
             connect.send();
             //console.log("https://dbmgr.scribblex.net/connect_exist.php?un="+username+"&pass="+password);
+        }
+
+        function createacc(){
+            // Create Account if User already doesn't have one.
         }
     </script>
 </body>
