@@ -252,7 +252,6 @@ html, body{
     background-color: rgba(20, 7, 24, 0.879);
     height: 100%;
     width: 100%;
-    z-index: 12313;
 }
 
 #login{
