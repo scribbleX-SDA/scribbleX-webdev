@@ -370,7 +370,7 @@
             //document.getElementById("connect_user").style.display = "block";
             //document.getElementById("main_container").style.display = "none";
 
-            window.open("https://account.scribblex.net/", '_blank');
+            var account_mgr_window = window.open("https://account.scribblex.net/", '_blank');
 
             var ajxCall_interval = setInterval(()=>{
                 var unm = '';
@@ -399,8 +399,9 @@
                             if(unm != '' && mtp != ''){
                                 create_db("username", unm, 15);
                                 create_db("member", mtp, 15);
-                                
+
                                 clearInterval(ajxCall_interval);
+                                window.close(account_mgr_window);
                             }
                         //}
                     }
