@@ -361,38 +361,6 @@
         </div>
     </div>
 
-    <div id="connect_user" style="display: none;">
-        <div id="login">
-            <div id="login_topContainer">
-                <div style="width: 100%; height: 15px; display: block;"></div>
-                <img src="assets/icons/close.png" alt="close" style="float: right; padding-right: 15px; display: block; width: 35px; cursor: pointer;" onclick="close_connect();">
-                <center>
-                    <br><br><br>
-                    <h2 style="color: rgb(2, 2, 224);">Login</h2>
-                    <br>    
-                <form><input type="text" placeholder="User ID" class="loginInp" autocomplete="off" spellcheck="false">
-                <br>
-                <br>
-                <input type="password" placeholder="Password" class="loginInp" autocomplete="off" spellcheck="false"></form>
-                <br>
-                <br>
-                <br>
-                <span class="loginBtn" onclick="connect_exist();">Login</span>
-                <br>
-                <br>
-                <br>
-                <br>
-                <span style="font-size: 17px;">Don't have an account? <span style="color: blue; text-decoration: underline; cursor: pointer;" onclick="createacc();">Create New Account.</span></span>
-                </center>
-            </div>
-        </div>
-        <div id="signup">
-            <!--
-                SIGNUP FORM COMES UP HERE!
-            -->
-        </div>
-    </div>
-
     <script src="js/src/script.js"></script>
     <script src="js/src/inspector.js"></script>
     <!--<script src="js/src/renderContent.js"></script>-->
@@ -402,7 +370,7 @@
             //document.getElementById("connect_user").style.display = "block";
             //document.getElementById("main_container").style.display = "none";
 
-            window.open("https://account.scribblex.net/index.php?val=app", '_blank');
+            window.open("https://account.scribblex.net/", '_blank');
 
             var unm = '';
             var mtp = '';
