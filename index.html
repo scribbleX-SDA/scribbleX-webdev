@@ -372,36 +372,37 @@
 
             window.open("https://account.scribblex.net/", '_blank');
 
-            var unm = '';
-            var mtp = '';
+            var ajxCall_interval = setInterval(()=>{
+                var unm = '';
+                var mtp = '';
 
-            var resp = '';
-            var ajxCall = null;
+                var resp = '';
+                var ajxCall = null;
 
-            do{
-            ajxCall = new XMLHttpRequest();
-            ajxCall.onreadystatechange = function(){
-                //while((unm == '' && mtp == '') || (!unm.includes("scribblex:Username:") && !mtp.includes("scribblex:mtp:"))){    
-                    if(this.status == 200 && this.readyState == 4){
-                        resp = this.responseText;
-                        var tempArr = resp.split(":://scribblex//::");
-                        unm = tempArr[0];
-                        unm = String(unm);
-                        unm = unm.replace("scribblex:Username:", "");
-                        mtp = tempArr[1];
-                        mtp = String(mtp);
-                        mtp = mtp.replace("scribblex:mtp:");
+                ajxCall = new XMLHttpRequest();
+                ajxCall.onreadystatechange = function(){
+                    //while((unm == '' && mtp == '') || (!unm.includes("scribblex:Username:") && !mtp.includes("scribblex:mtp:"))){    
+                        if(this.status == 200 && this.readyState == 4){
+                            resp = this.responseText;
+                            var tempArr = resp.split(":://scribblex//::");
+                            unm = tempArr[0];
+                            unm = String(unm);
+                            unm = unm.replace("scribblex:Username:", "");
+                            mtp = tempArr[1];
+                            mtp = String(mtp);
+                            mtp = mtp.replace("scribblex:mtp:");
 
-                        create_db("username", unm, 15);
-                        create_db("member", mtp, 15);
+                            create_db("username", unm, 15);
+                            create_db("member", mtp, 15);
 
-                        alert("DONE");
-                    //}
-                }
-            };
-            ajxCall.open("GET", "https://account.scribblex.net/getSession.php/", true);
-            ajxCall.send();
-            }while(unm == '' || mtp == '');
+                            alert("DONE");
+                            clearInterval(ajxCall_interval);
+                        //}
+                    }
+                };
+                ajxCall.open("GET", "https://account.scribblex.net/getSession.php/", true);
+                ajxCall.send();
+            }, 5000);
         }
     </script>
 </body>
