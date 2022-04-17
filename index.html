@@ -392,11 +392,16 @@
                             mtp = String(mtp);
                             mtp = mtp.replace("scribblex:mtp:");
 
-                            create_db("username", unm, 15);
-                            create_db("member", mtp, 15);
+                            //create_db("username", unm, 15);
+                            //create_db("member", mtp, 15);
 
-                            alert("DONE");
-                            clearInterval(ajxCall_interval);
+                            console.log("DONE -> SESSION CALL MADE.");
+                            if(unm != '' && mtp != ''){
+                                create_db("username", unm, 15);
+                                create_db("member", mtp, 15);
+                                
+                                clearInterval(ajxCall_interval);
+                            }
                         //}
                     }
                 };
