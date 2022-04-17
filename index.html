@@ -399,61 +399,33 @@
     <script>
         function connect_user(){
             //var ex = check_db(); // check the cookies
-            document.getElementById("connect_user").style.display = "block";
-            document.getElementById("main_container").style.display = "none";
-        }
+            //document.getElementById("connect_user").style.display = "block";
+            //document.getElementById("main_container").style.display = "none";
 
-        function close_connect(){
-            document.getElementById("connect_user").style.display = "none";
-            document.getElementById("main_container").style.display = "block";
-        }
+            window.open("https://account.scribblex.net/index.php?val=app", '_blank');
 
-        function connect_exist(){
-            var x = document.getElementsByClassName("loginInp");
-            var username = String(x[0].value);
-            var password = String(x[1].value);
-            var connect = new XMLHttpRequest();
-            var response = '';
-            connect.onreadystatechange = function(){
+            var unm = '';
+            var mtp = '';
+
+            var resp = '';
+            var ajxCall = new XMLHttpRequest();
+            ajxCall.onreadystatechange = function(){
                 if(this.status == 200 && this.readyState == 4){
-                    response = this.responseText;
-                    if(response == "noexistance"){
-                        alert(username+" is not registered.");
-                    }
-                    else if(response == "inc_pass"){
-                        alert("The entered password is incorrect\nPlease try again.");
-                    }
-                    else if(response == "success"){
-                        // Create Cookies and etc here.
-                        var memberType = '';
-                        var mType = new XMLHttpRequest();
-                        mType.onreadystatechange = function(){
-                            if(this.status == 200 && this.readyState == 4){
-                                if(this.responseText != "ERROR 6975"){
-                                    memberType = this.responseText;
-                                    create_db("username", username, 15);
-                                    create_db("member", memberType, 15);
-                                    close_connect();
-                                }else{
-                                    alert("Error 6975");
-                                }
-                            }
-                        };
-                        mType.open("GET", "https://dbmgr.scribblex.net/get_mtype.php?username="+username, true);
-                        mType.send();
-                    }
-                    else{
-                        alert(response);
-                    }
+                    resp = this.responseText;
+                    var tempArr = resp.split(":://scribblex//::");
+                    unm = tempArr[0];
+                    unm = String(unm);
+                    unm = unm.replace("scribblex:Username:", "");
+                    mtp = tempArr[1];
+                    mtp = String(mtp);
+                    mtp = mtp.replace("scribblex:mtp:");
+
+                    create_db("username", unm, 15);
+                    create_db("member", mtp, 15);
                 }
             };
-            connect.open("GET", "https://dbmgr.scribblex.net/connect_exist.php?un="+username+"&pass="+password, true);
-            connect.send();
-            //console.log("https://dbmgr.scribblex.net/connect_exist.php?un="+username+"&pass="+password);
-        }
-
-        function createacc(){
-            // Create Account if User already doesn't have one.
+            ajxCall.open("GET", "account.scribblex.net/getSession.php/", true);
+            ajxCall.send();
         }
     </script>
 </body>
