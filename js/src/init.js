@@ -12,6 +12,7 @@ function init(){
     $("#htmlEditorContainer").height($("#htmlContainer").height() - $("#htmlHeader").height());
     $("#cssEditorContainer").height($("#cssContainer").height() - $("#cssHeader").height());
     $("#jsEditorContainer").height($("#jsContainer").height() - $("#jsHeader").height());
+    $("#toolsPanel_container").height($("#toolsPanel").height() - $("#toolsPanel_header").height() - $("#toolsPanel_footer").height());
 
     
     jsEditor.resize();

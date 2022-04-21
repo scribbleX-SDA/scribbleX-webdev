@@ -39,6 +39,7 @@
     <script src="js/libraries/split.js"></script>
     <script src="js/libraries/sweetalert.js"></script>
     
+    <script src="js/codemirror/lib/codemirror.js"></script>
     <script src="js/ace-builds-master/src/ace.js"></script>
     <script src="js/ace-builds-master/src/ext-language_tools.js"></script>
     <script src="js/ace-builds-master/src/mode-javascript.js"></script>
@@ -46,6 +47,41 @@
     <script src="js/src/init.js"></script>
     <script src="https://scripts.scribblex.net/mType_manager.js"></script>
     <!--<script src="js/src/builder_gui.js"></script>-->
+
+
+    <!--    ==================  -->
+
+    <script src="js/codemirror/addon/fold/xml-fold.js"></script>
+    <script src="js/codemirror/addon/fold/foldcode.js"></script>
+    <script src="js/codemirror/addon/fold/foldgutter.js"></script>
+    <script src="js/codemirror/addon/fold/brace-fold.js"></script>
+    <script src="js/codemirror/addon/fold/comment-fold.js"></script>
+    <script src="js/codemirror/addon/fold/markdown-fold.js"></script>
+    <script src="js/codemirror/addon/fold/indent-fold.js"></script>
+    <script src="js/codemirror/addon/edit/closebrackets.js"></script>
+    <script src="js/codemirror/addon/edit/closetag.js"></script>
+    <script src="js/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="js/codemirror/addon/edit/matchtags.js"></script>
+    <script src="js/codemirror/addon/dialog/dialog.js"></script>
+    <script src="js/codemirror/addon/search/jump-to-line.js"></script>
+    <script src="js/codemirror/addon/search/matchesonscrollbar.js"></script>
+    <script src="js/codemirror/addon/search/search.js"></script>
+    <script src="js/codemirror/addon/search/searchcursor.js"></script>
+    <script src="js/codemirror/addon/search/match-highlighter.js"></script>
+    <script src="js/codemirror/addon/scroll/annotatescrollbar.js"></script>
+
+
+
+    <script src="js_libs/codemirror/mode/css/css.js"></script>
+    <script src="js_libs/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="js_libs/codemirror/mode/javascript/javascript.js"></script>
+    <script src="js_libs/codemirror/mode/xml/xml.js"></script>
+
+
+    <link rel="stylesheet" href="js/codemirror/addon/fold/foldgutter.css">
+    <link rel="stylesheet" href="js/codemirror/addon/dialog/dialog.css">
+    <link rel="stylesheet" href="js/codemirror/addon/search/matchesonscrollbar.css">
+    <link rel="stylesheet" href="css/codemirror.css">
     <!--
         ==================================================================================================================
     -->
@@ -143,9 +179,21 @@
     <div id="main_container">   <!--  THIS IS THE MAIN CONTAINER OF THE APP  -->
         <div id="top_header">
             &nbsp;
-            <img src="assets/logo/logox.png" alt="scribbleX"
-                style="height: 100%; width: 215px; cursor: pointer;"
-            >
+            <div style="width: 215px; height: 100%; display: inline-block; position: relative;"><img src="assets/logo/logox.png" alt="scribbleX"
+                style="height: 70%; cursor: pointer; display: inline-block; position: absolute; top: 50%; transform: translateY(-50%);"
+            ></div>
+            <div id="top_headerChild1">
+                <div style="height: 100%; display: inline-block;"></div>
+                <div class="iconHolder_topHeader">
+                    <img src="assets/icons/run_code.png" alt="" class="icon_header cursor_pointer" onclick="inspector();">
+                    <span class="iconsText_header cursor_pointer" onclick="inspector();">Run</span>
+                </div>
+                &nbsp;&nbsp;&nbsp;
+                <div class="iconHolder_topHeader">
+                    <img src="assets/icons/cloud-computing.png" alt="" class="icon_header cursor_pointer">
+                    <span class="iconsText_header cursor_pointer">Save</span>
+                </div>
+            </div>
         </div>
         <div id="appContainer">
             <div id="leftContainer" style="outline-style: solid; outline-color: rgb(127, 0, 115); outline-width: 1px; outline-offset: -2px;">
@@ -190,14 +238,19 @@
             <div id="rightContainer">
                 <div id="top_appContainer">
                     <div class="splitView_Tools">
-                        <div id="toolsPanel">
+                        <div id="toolsPanel" style="min-width: 10px;">
                             <div id="toolsPanel_header">
-                                <span style="color: white; font-size: 20px;">
-                                    Tools
-                                </span>
+                                <div style="height: 100%; width: 7px; position: relative; display: inline-block;" class="noWrap"></div>
+                                <div style="height: 100%; width: 20px; position: relative; display: inline-block;" class="noWrap">
+                                    <img src="assets/icons/tools.png" alt="" style="position: absolute; height: 18px; top: 50%; transform: translateY(-50%); cursor: pointer;" title="Builder Tools" id="builderTools_icon" onclick="bt_launch();">
+                                </div>
+                                <div style="height: 100%; width: 7px; position: relative; display: inline-block;" class="noWrap"></div>
+                                <div style="height: 100%; width: 20px; position: relative; display: inline-block;" class="noWrap">
+                                    <img src="assets/icons/color-palette.png" alt="" style="position: absolute; height: 18px; top: 50%; transform: translateY(-50%); cursor: pointer;" title="Color Palette" id="colorPallete_icon" onclick="clrP_launch();">
+                                </div>
                             </div>
                             <div id="toolsPanel_container" style="color: white;">
-                                <div style="display: inline-block; height: 100%; width: 2%;"></div>
+                                <!--<div style="display: inline-block; height: 100%; width: 5px;"></div>-->
                                 <!--<button id="GUIEditor_Button">GUI Editor</button>-->
                                 <!-- onclick="activateGUIEditor();" -->
                                 <!--<span id="GUIEditor_stat">OFF</span>-->
@@ -208,7 +261,7 @@
                                     });
                                 </script>
                                 -->
-                                <div style="display: inline-block; height: 100%; width: 96%;">
+                                <div style="display: inline-block; height: 100%; width: 96%; white-space: nowrap; margin-left: 10px;" id="builderTools">
                                     <br>
                                     <label for="elemHeihgt" style="font-size: 15px;">Height:</label>
                                     <input type="number" name="" id="elemHeight" step="0.01" value="" class="elemDim">
@@ -225,6 +278,12 @@
                                     <br>
                                     <span style="font-size: 15px;">Font Color: </span><input type="color" name="" id="elemFC" value="" onchange="fontColor(this.value);" oninput="fontColor(this.value);">
                                 </div>
+                                <!--  ===================  -->
+                                <div id="colorPalette">
+                                    <div class="gmC">
+                                        <div class="gradient-mixer"></div>
+                                    </div>
+                                </div>
                             </div>
                             <div id="toolsPanel_footer"></div>
                         </div>
@@ -236,6 +295,9 @@
                                             display: inline-block;
                                             cursor: pointer;"
                                 title="Reload Page" onclick="inspector();">
+                                <div style="height: 100%; position: relative; display: inline-block; float: right; padding-right: 60px;">
+                                    <img src="assets/icons/command-line.png" alt="console" style="position: absolute; height: 24px; top: 50%; transform: translateY(-50%);" class="cursor_pointer" title="console" id="console">
+                                </div>
                             </div>
                             <span id="previewContainer_text">
                                 <br>
@@ -295,6 +357,28 @@
                                     return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
                                 }*/
                             </script>
+                        </div>
+                        <div id="devConsole" style="background-color: rgb(0, 0, 0); display: none;">
+                            <div id="consoleHeader">
+                                <div style="display: inline-block; height: 100%; width: 25px; position: relative; float: right;">
+                                    <img src="assets/icons/cross.png" alt="" id="consoleClose"
+                                    title="Close Console" style="height: 20px; top: 50%; transform: translateY(-50%); position: absolute; cursor: pointer;">
+                                </div>
+                            </div>
+                            <div id="consoleDisplayHolder">
+                                <div id="commandInput" style="position: relative;
+                                    display: inline-block;
+                                    border-style: none; outline: none; 
+                                    font-family: monospace;
+                                    width: 100%; font-size: 12px; 
+                                    background-color: transparent;">
+                                </div>
+                            </div>
+
+                            <!--<div id="commandInputHolder">
+                                <label for="commandInput" style="font-family: 'terminal'; font-size: 20px; color: white;">&gt;_&nbsp;</label>
+                                
+                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -362,6 +446,7 @@
     </div>
 
     <script src="js/src/script.js"></script>
+    <script src="js/src/gradientMixer.js"></script>
     <script src="js/src/inspector.js"></script>
     <!--<script src="js/src/renderContent.js"></script>-->
     <script>
