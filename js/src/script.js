@@ -15,6 +15,9 @@ Split(['#top_appContainer', '#bottom_appContainer'], {
 })
 
 
+
+//====================================//
+
 //======================================//
 
 
@@ -98,9 +101,19 @@ resizeObserver.observe($("#previewContainer")[0]);
 let toolsPanelObserver = new ResizeObserver(()=>{
     var panelWidth = $("#toolsPanel").width();
     if(panelWidth <= 70){
-        document.getElementById("toolsPanel_container").style.display = "none";
+        //document.getElementById("toolsPanel_container").style.display = "none";
+        document.getElementById("builderTools").style.display = "none";
+        document.getElementById("colorPalette").style.display = "none";
     }else{
-        document.getElementById("toolsPanel_container").style.display = "inline-block";
+        //document.getElementById("toolsPanel_container").style.display = "inline-block";
+        if(activeTool == "builderTools"){
+            document.getElementById("builderTools").style.display = "block";
+        }else if(activeTool == "colorPalette"){
+            document.getElementById("colorPalette").style.display = "block";
+        }else{
+            // Raise ERROR!
+            alert("Unknown Error Caused!");
+        }
     }
 });
 toolsPanelObserver.observe(document.getElementById("toolsPanel"));
@@ -143,9 +156,12 @@ var tempCount = false;
 
 document.getElementById("console").addEventListener("click", ()=>{
     //document.getElementById("previewContainer").style.width = "1252px";
-    document.getElementById("toolsPanel").style.width = "30px";
+    //document.getElementById("toolsPanel").style.width = "30px";
+    var tempWidth = $("#toolsPanel").width();
+    $("toolsPanel").width(tempWidth - 547);
     document.getElementById("devConsole").style.display = "inline-block";
     document.getElementsByClassName("ace_gutter")[0].setAttribute("id", "console_gutter");
+    document.getElementsByClassName("ace_content")[0].setAttribute("id", "cmd_console");
     if(tempCount == false){
         commandInp.setValue('');
         tempCount = true;
@@ -160,13 +176,16 @@ document.getElementById("consoleClose").addEventListener("click", ()=>{
     $("#toolsPanel").width(req + 547);
 });
 
+var activeTool = "builderTools";
 
 function bt_launch(){
     document.getElementById("builderTools").style.display = "block";
     document.getElementById("colorPalette").style.display = "none";
+    activeTool == "builderTools";
 }
 
 function clrP_launch(){
     document.getElementById("builderTools").style.display = "none";
     document.getElementById("colorPalette").style.display = "block";
+    activeTool == "colorPalette";
 }

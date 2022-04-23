@@ -11,6 +11,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
     
     <!--
         TITLE OF THE APP
@@ -280,9 +283,10 @@
                                 </div>
                                 <!--  ===================  -->
                                 <div id="colorPalette">
-                                    <div class="gmC">
-                                        <div class="gradient-mixer"></div>
-                                    </div>
+                                    <!--
+                                        PUT THE COLOR PALETTE HERE
+                                    -->
+                                    Color Palette
                                 </div>
                             </div>
                             <div id="toolsPanel_footer"></div>
@@ -360,7 +364,11 @@
                         </div>
                         <div id="devConsole" style="background-color: rgb(0, 0, 0); display: none;">
                             <div id="consoleHeader">
-                                <div style="display: inline-block; height: 100%; width: 25px; position: relative; float: right;">
+                                <div style="display: inline-block; height: 100%; width: 60px; position: relative; float: left;">
+                                    &nbsp;&nbsp;&nbsp;<img src="assets/icons/disabled.png" alt="" id="clearConsole"
+                                    title="Clear Console" style="height: 17px; top: 50%; transform: translateY(-50%); position: absolute; cursor: pointer;">
+                                </div>
+                                <div style="display: inline-block; height: 100%; width: 60px; position: relative; float: right;">
                                     <img src="assets/icons/cross.png" alt="" id="consoleClose"
                                     title="Close Console" style="height: 20px; top: 50%; transform: translateY(-50%); position: absolute; cursor: pointer;">
                                 </div>
@@ -446,7 +454,6 @@
     </div>
 
     <script src="js/src/script.js"></script>
-    <script src="js/src/gradientMixer.js"></script>
     <script src="js/src/inspector.js"></script>
     <!--<script src="js/src/renderContent.js"></script>-->
     <script>
@@ -497,5 +504,28 @@
             }, 5000);
         }
     </script>
+
+    <script>
+        var activeElement = "";
+        document.addEventListener("click", (e)=>{
+            if(e.target.id == "cmd_console"){
+                activeElement = "cmd_console";
+            }else{
+                activeElement = String(e.target.id);
+            }
+        });
+        var EnterPress = false;
+        $(document).keydown(function(e){
+            if(activeElement == "cmd_console"){
+                if(e.which == 13){
+                    //console.log("Enter Pressed");
+                    e.preventDefault();
+
+                    cmd_consoleMGR();
+                }
+            }
+        });
+    </script>
+    <script src="js/src/cmd_console.js"></script>
 </body>
 </html>

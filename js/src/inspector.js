@@ -61,6 +61,8 @@ function inspector(){
     const iframe = document.getElementById("previewFrame");
     const idocument = iframe.contentWindow.document;
 
+    //document.getElementById("previewFrame").contentWindow.document
+
     document.addEventListener("mouseover", (ev)=>{
         doc_element = ev.target.tagName;
         //console.log("DOC_ELEMENT: " + doc_element);
